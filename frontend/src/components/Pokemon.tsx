@@ -9,6 +9,172 @@ import CatchingPokemonSharpIcon from "@mui/icons-material/CatchingPokemonSharp";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
+type sprites = {
+  back_default: string;
+  back_female: null;
+  back_shiny: string;
+  back_shiny_female: null;
+  front_default: string;
+  front_female: null;
+  front_shiny: string;
+  front_shiny_female: null;
+  other: {
+    dream_world: {
+      front_default: string;
+      front_female: null;
+    };
+    home: {
+      front_default: string;
+      front_female: null;
+      front_shiny: string;
+      front_shiny_female: null;
+    };
+    "official-artwork": {
+      front_default: string;
+    };
+  };
+  versions: {
+    "generation-i": {
+      "red-blue": {
+        back_default: string;
+        back_gray: string;
+        front_default: string;
+        front_gray: string;
+      };
+      yellow: {
+        back_default: string;
+        back_gray: string;
+        front_default: string;
+        front_gray: string;
+      };
+    };
+    "generation-ii": {
+      crystal: {
+        back_default: string;
+        back_shiny: string;
+        front_default: string;
+        front_shiny: string;
+      };
+      gold: {
+        back_default: string;
+        back_shiny: string;
+        front_default: string;
+        front_shiny: string;
+      };
+      silver: {
+        back_default: string;
+        back_shiny: string;
+        front_default: string;
+        front_shiny: string;
+      };
+    };
+    "generation-iii": {
+      emerald: {
+        front_default: string;
+        front_shiny: string;
+      };
+      "firered-leafgreen": {
+        back_default: string;
+        back_shiny: string;
+        front_default: string;
+        front_shiny: string;
+      };
+      "ruby-sapphire": {
+        back_default: string;
+        back_shiny: string;
+        front_default: string;
+        front_shiny: string;
+      };
+    };
+    "generation-iv": {
+      "diamond-pearl": {
+        back_default: string;
+        back_female: null;
+        back_shiny: string;
+        back_shiny_female: null;
+        front_default: string;
+        front_female: null;
+        front_shiny: string;
+        front_shiny_female: null;
+      };
+      "heartgold-soulsilver": {
+        back_default: string;
+        back_female: null;
+        back_shiny: string;
+        back_shiny_female: null;
+        front_default: string;
+        front_female: null;
+        front_shiny: string;
+        front_shiny_female: null;
+      };
+      platinum: {
+        back_default: string;
+        back_female: null;
+        back_shiny: string;
+        back_shiny_female: null;
+        front_default: string;
+        front_female: null;
+        front_shiny: string;
+        front_shiny_female: null;
+      };
+    };
+    "generation-v": {
+      "black-white": {
+        animated: {
+          back_default: string;
+          back_female: null;
+          back_shiny: string;
+          back_shiny_female: null;
+          front_default: string;
+          front_female: null;
+          front_shiny: string;
+          front_shiny_female: null;
+        };
+        back_default: string;
+        back_female: null;
+        back_shiny: string;
+        back_shiny_female: null;
+        front_default: string;
+        front_female: null;
+        front_shiny: string;
+        front_shiny_female: null;
+      };
+    };
+    "generation-vi": {
+      "omegaruby-alphasapphire": {
+        front_default: string;
+        front_female: null;
+        front_shiny: string;
+        front_shiny_female: null;
+      };
+      "x-y": {
+        front_default: string;
+        front_female: null;
+        front_shiny: string;
+        front_shiny_female: null;
+      };
+    };
+    "generation-vii": {
+      icons: {
+        front_default: string;
+        front_female: null;
+      };
+      "ultra-sun-ultra-moon": {
+        front_default: string;
+        front_female: null;
+        front_shiny: string;
+        front_shiny_female: null;
+      };
+    };
+    "generation-viii": {
+      icons: {
+        front_default: string;
+        front_female: null;
+      };
+    };
+  };
+};
+
 type PokemonType = {
   id: number;
   name: string;
@@ -85,171 +251,7 @@ type PokemonType = {
     name: string;
     url: string;
   };
-  sprites: {
-    back_default: string;
-    back_female: null;
-    back_shiny: string;
-    back_shiny_female: null;
-    front_default: string;
-    front_female: null;
-    front_shiny: string;
-    front_shiny_female: null;
-    other: {
-      dream_world: {
-        front_default: string;
-        front_female: null;
-      };
-      home: {
-        front_default: string;
-        front_female: null;
-        front_shiny: string;
-        front_shiny_female: null;
-      };
-      "official-artwork": {
-        front_default: string;
-      };
-    };
-    versions: {
-      "generation-i": {
-        "red-blue": {
-          back_default: string;
-          back_gray: string;
-          front_default: string;
-          front_gray: string;
-        };
-        yellow: {
-          back_default: string;
-          back_gray: string;
-          front_default: string;
-          front_gray: string;
-        };
-      };
-      "generation-ii": {
-        crystal: {
-          back_default: string;
-          back_shiny: string;
-          front_default: string;
-          front_shiny: string;
-        };
-        gold: {
-          back_default: string;
-          back_shiny: string;
-          front_default: string;
-          front_shiny: string;
-        };
-        silver: {
-          back_default: string;
-          back_shiny: string;
-          front_default: string;
-          front_shiny: string;
-        };
-      };
-      "generation-iii": {
-        emerald: {
-          front_default: string;
-          front_shiny: string;
-        };
-        "firered-leafgreen": {
-          back_default: string;
-          back_shiny: string;
-          front_default: string;
-          front_shiny: string;
-        };
-        "ruby-sapphire": {
-          back_default: string;
-          back_shiny: string;
-          front_default: string;
-          front_shiny: string;
-        };
-      };
-      "generation-iv": {
-        "diamond-pearl": {
-          back_default: string;
-          back_female: null;
-          back_shiny: string;
-          back_shiny_female: null;
-          front_default: string;
-          front_female: null;
-          front_shiny: string;
-          front_shiny_female: null;
-        };
-        "heartgold-soulsilver": {
-          back_default: string;
-          back_female: null;
-          back_shiny: string;
-          back_shiny_female: null;
-          front_default: string;
-          front_female: null;
-          front_shiny: string;
-          front_shiny_female: null;
-        };
-        platinum: {
-          back_default: string;
-          back_female: null;
-          back_shiny: string;
-          back_shiny_female: null;
-          front_default: string;
-          front_female: null;
-          front_shiny: string;
-          front_shiny_female: null;
-        };
-      };
-      "generation-v": {
-        "black-white": {
-          animated: {
-            back_default: string;
-            back_female: null;
-            back_shiny: string;
-            back_shiny_female: null;
-            front_default: string;
-            front_female: null;
-            front_shiny: string;
-            front_shiny_female: null;
-          };
-          back_default: string;
-          back_female: null;
-          back_shiny: string;
-          back_shiny_female: null;
-          front_default: string;
-          front_female: null;
-          front_shiny: string;
-          front_shiny_female: null;
-        };
-      };
-      "generation-vi": {
-        "omegaruby-alphasapphire": {
-          front_default: string;
-          front_female: null;
-          front_shiny: string;
-          front_shiny_female: null;
-        };
-        "x-y": {
-          front_default: string;
-          front_female: null;
-          front_shiny: string;
-          front_shiny_female: null;
-        };
-      };
-      "generation-vii": {
-        icons: {
-          front_default: string;
-          front_female: null;
-        };
-        "ultra-sun-ultra-moon": {
-          front_default: string;
-          front_female: null;
-          front_shiny: string;
-          front_shiny_female: null;
-        };
-      };
-      "generation-viii": {
-        icons: {
-          front_default: string;
-          front_female: null;
-        };
-      };
-    };
-  };
+  sprites: sprites;
   stats: [
     {
       base_stat: number;
@@ -288,15 +290,11 @@ type PokemonType = {
   ];
 };
 
-const favoritePokemonIdList = [92, 93, 94];
+// const favoritePokemonIdList = [92, 93, 94];
 
 const options: AxiosRequestConfig = {
   method: "get",
-  url: `https://pokeapi.co/api/v2/pokemon/${
-    favoritePokemonIdList[
-      Math.floor(Math.random() * favoritePokemonIdList.length)
-    ]
-  }`,
+  url: "https://pokeapi.co/api/v2/pokemon/94",
 };
 
 function Pokemon() {
@@ -304,13 +302,32 @@ function Pokemon() {
   const [pokemonName, setPokemonName] = useState<string>("");
   const [pokemonImage, setPokemonImage] = useState<string>("");
 
+  const pickImageFromAnyGeneration = (sprites: sprites) => {
+    const images = [
+      sprites.versions["generation-i"]["red-blue"].front_default,
+      sprites.versions["generation-i"].yellow.front_default,
+      sprites.versions["generation-ii"].gold.front_default,
+      sprites.versions["generation-ii"].silver.front_default,
+      sprites.versions["generation-ii"].crystal.front_default,
+      sprites.versions["generation-iii"]["ruby-sapphire"].front_default,
+      sprites.versions["generation-iii"]["emerald"].front_default,
+      sprites.versions["generation-iii"]["firered-leafgreen"].front_default,
+      sprites.versions["generation-iv"]["diamond-pearl"].front_default,
+      sprites.versions["generation-iv"]["platinum"].front_default,
+      sprites.versions["generation-iv"]["heartgold-soulsilver"].front_default,
+      sprites.versions["generation-v"]["black-white"].front_default,
+    ];
+
+    return images[Math.floor(Math.random() * images.length)];
+  };
+
   useEffect(() => {
     axios(options)
       .then((res: AxiosResponse<PokemonType>) => {
         const { data } = res;
         setPokemonIndex(data.id);
         setPokemonName(data.name);
-        setPokemonImage(data.sprites.front_default);
+        setPokemonImage(pickImageFromAnyGeneration(data.sprites));
       })
       .catch((error: AxiosError) => console.log(error));
   }, []);
@@ -345,6 +362,7 @@ const PokemonPresenter = (props: pokemonPresenterProps) => {
           flexDirection: "column",
         }}
       >
+        {/* 初代と2代目の画像が大きいので統一的に表示できるように修正する */}
         <CardMedia
           component="img"
           sx={
