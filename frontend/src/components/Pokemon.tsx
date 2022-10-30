@@ -1,5 +1,12 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 
 type PokemonType = {
   id: number;
@@ -308,11 +315,37 @@ function Pokemon() {
   }, []);
 
   return (
-    <div>
-      <p>ずかんばんごう：{pokemonIndex}</p>
-      <p>なまえ：{pokemonName}</p>
-      <img src={pokemonImage} alt="pokemon" />
-    </div>
+    <Grid item key={pokemonIndex} xs={12} sm={6} md={4}>
+      <Card
+        sx={{
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <CardMedia
+          component="img"
+          sx={
+            {
+              // 16: 9,
+              // pt: "56.25%",
+            }
+          }
+          image={pokemonImage}
+          alt="pokemon"
+        />
+        <CardContent sx={{ flexGrow: 1 }}>
+          <Typography gutterBottom variant="h5" component="h2">
+            Favorite Pokemon
+          </Typography>
+          <Typography>{pokemonName}</Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">View</Button>
+          <Button size="small">Edit</Button>
+        </CardActions>
+      </Card>
+    </Grid>
   );
 }
 
