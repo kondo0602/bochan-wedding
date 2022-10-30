@@ -316,7 +316,28 @@ function Pokemon() {
   }, []);
 
   return (
-    <Grid item key={pokemonIndex} xs={12} sm={6} md={4}>
+    <PokemonPresenter
+      id={pokemonIndex}
+      name={pokemonName}
+      image={pokemonImage}
+      // handleFetch={fetchPokemon}
+    />
+  );
+}
+
+type pokemonPresenterProps = {
+  id: number;
+  name: string;
+  image: string;
+  // handleFetch: () => void;
+};
+
+const PokemonPresenter = (props: pokemonPresenterProps) => {
+  const { id, name, image } = props;
+  // const { id, name, image, handleFetch } = props;
+
+  return (
+    <Grid item key={id} xs={12} sm={6} md={4}>
       <Card
         sx={{
           height: "100%",
@@ -332,7 +353,7 @@ function Pokemon() {
               // pt: "56.25%",
             }
           }
-          image={pokemonImage}
+          image={image}
           alt="pokemon"
         />
         <CardContent sx={{ flexGrow: 1 }}>
@@ -340,16 +361,17 @@ function Pokemon() {
             <CatchingPokemonSharpIcon sx={{ pt: 1, mr: 1 }} />
             Poke API
           </Typography>
-          <Typography>{pokemonName}</Typography>
+          <Typography>{name}</Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={() => fetchPokemon}>
+          <Button size="small">
+            {/* <Button size="small" onClick={handleFetch}> */}
             View
           </Button>
         </CardActions>
       </Card>
     </Grid>
   );
-}
+};
 
 export default Pokemon;
