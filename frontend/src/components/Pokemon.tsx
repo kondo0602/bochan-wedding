@@ -5,6 +5,7 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import CatchingPokemonSharpIcon from "@mui/icons-material/CatchingPokemonSharp";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
@@ -336,13 +337,15 @@ function Pokemon() {
         />
         <CardContent sx={{ flexGrow: 1 }}>
           <Typography gutterBottom variant="h5" component="h2">
-            Favorite Pokemon
+            <CatchingPokemonSharpIcon sx={{ pt: 1, mr: 1 }} />
+            Poke API
           </Typography>
           <Typography>{pokemonName}</Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">View</Button>
-          <Button size="small">Edit</Button>
+          <Button size="small" onClick={() => fetchPokemon}>
+            View
+          </Button>
         </CardActions>
       </Card>
     </Grid>
