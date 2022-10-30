@@ -175,7 +175,7 @@ type sprites = {
   };
 };
 
-type PokemonType = {
+type pokeApiResponse = {
   id: number;
   name: string;
   base_experience: number;
@@ -323,7 +323,7 @@ function Pokemon() {
 
   useEffect(() => {
     axios(options)
-      .then((res: AxiosResponse<PokemonType>) => {
+      .then((res: AxiosResponse<pokeApiResponse>) => {
         const { data } = res;
         setPokemonIndex(data.id);
         setPokemonName(data.name);
