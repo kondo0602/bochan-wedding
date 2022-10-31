@@ -12,7 +12,7 @@ import { useGetPokemons } from "../api/getPokemons";
 export function Pokemon() {
   const { index, name, image, getPokemons } = useGetPokemons();
 
-  useEffect(() => getPokemons(), [getPokemons]);
+  useEffect(() => getPokemons(), []);
 
   return (
     <PokemonPresenter
