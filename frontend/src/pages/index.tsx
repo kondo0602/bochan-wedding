@@ -15,7 +15,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Pokemon from "components/Pokemon";
+import { Pokemon } from "features/pokemons";
 
 function Copyright() {
   return (

@@ -1,15 +1,4 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import { useEffect, useState } from "react";
-import Button from "@mui/material/Button";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import CatchingPokemonSharpIcon from "@mui/icons-material/CatchingPokemonSharp";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-
-type sprites = {
+export type sprites = {
   back_default: string;
   back_female: null;
   back_shiny: string;
@@ -175,7 +164,7 @@ type sprites = {
   };
 };
 
-type pokeApiResponse = {
+export type pokeApiResponse = {
   id: number;
   name: string;
   base_experience: number;
@@ -289,109 +278,3 @@ type pokeApiResponse = {
     }
   ];
 };
-
-// const favoritePokemonIdList = [92, 93, 94];
-
-const options: AxiosRequestConfig = {
-  method: "get",
-  url: "https://pokeapi.co/api/v2/pokemon/94",
-};
-
-const pickImageFromAnyGeneration = (sprites: sprites) => {
-  const images = [
-    sprites.versions["generation-i"]["red-blue"].front_default,
-    sprites.versions["generation-i"].yellow.front_default,
-    sprites.versions["generation-ii"].gold.front_default,
-    sprites.versions["generation-ii"].silver.front_default,
-    sprites.versions["generation-ii"].crystal.front_default,
-    sprites.versions["generation-iii"]["ruby-sapphire"].front_default,
-    sprites.versions["generation-iii"]["emerald"].front_default,
-    sprites.versions["generation-iii"]["firered-leafgreen"].front_default,
-    sprites.versions["generation-iv"]["diamond-pearl"].front_default,
-    sprites.versions["generation-iv"]["platinum"].front_default,
-    sprites.versions["generation-iv"]["heartgold-soulsilver"].front_default,
-    sprites.versions["generation-v"]["black-white"].front_default,
-  ];
-
-  return images[Math.floor(Math.random() * images.length)];
-};
-
-function Pokemon() {
-  const [pokemonIndex, setPokemonIndex] = useState<number>(0);
-  const [pokemonName, setPokemonName] = useState<string>("");
-  const [pokemonImage, setPokemonImage] = useState<string>("");
-
-  const fetchPokemon = () => {
-    axios(options)
-      .then((res: AxiosResponse<pokeApiResponse>) => {
-        const { data } = res;
-        setPokemonIndex(data.id);
-        setPokemonName(data.name);
-        setPokemonImage(pickImageFromAnyGeneration(data.sprites));
-      })
-      .catch((error: AxiosError) => console.log(error));
-  };
-
-  useEffect(() => {
-    fetchPokemon();
-  }, []);
-
-  return (
-    <PokemonPresenter
-      id={pokemonIndex}
-      name={pokemonName}
-      image={pokemonImage}
-      handleFetch={fetchPokemon}
-    />
-  );
-}
-
-type pokemonPresenterProps = {
-  id: number;
-  name: string;
-  image: string;
-  handleFetch: () => void;
-};
-
-const PokemonPresenter = (props: pokemonPresenterProps) => {
-  const { id, name, image, handleFetch } = props;
-
-  return (
-    <Grid item key={id} xs={12} sm={6} md={4}>
-      <Card
-        sx={{
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        {/* 初代と2代目の画像が大きいので統一的に表示できるように修正する */}
-        <CardMedia
-          component="img"
-          sx={
-            {
-              // 16: 9,
-              // pt: "56.25%",
-            }
-          }
-          image={image}
-          alt="pokemon"
-        />
-        <CardContent sx={{ flexGrow: 1 }}>
-          <Typography gutterBottom variant="h5" component="h2">
-            <CatchingPokemonSharpIcon sx={{ pt: 1, mr: 1 }} />
-            Poke API
-          </Typography>
-          <Typography>{name}</Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small" onClick={handleFetch}>
-            Fetch
-          </Button>
-        </CardActions>
-      </Card>
-    </Grid>
-  );
-};
-
-export default Pokemon;
