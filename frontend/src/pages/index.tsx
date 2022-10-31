@@ -14,8 +14,39 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Pokemon } from "features/pokemons";
+
+import { useState } from "react";
+
+const Counter = () => {
+  const [count, setCount] = useState<number>(0);
+  const increment = () => setCount((prevCount) => prevCount + 1);
+  const decrement = () => setCount((prevCount) => prevCount - 1);
+
+  return (
+    <Grid item key={1} xs={12} sm={6} md={4}>
+      <Card
+        sx={{
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <Typography gutterBottom variant="h5" component="h2">
+          {count}
+        </Typography>
+        <CardActions>
+          <Button size="small" onClick={decrement}>
+            -1
+          </Button>
+          <Button size="small" onClick={increment}>
+            +1
+          </Button>
+        </CardActions>
+      </Card>
+    </Grid>
+  );
+};
 
 function Copyright() {
   return (
@@ -30,13 +61,11 @@ function Copyright() {
   );
 }
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8];
-
-const theme = createTheme();
+const cards = [1, 2, 3, 4, 5, 6, 7];
 
 export default function Album() {
   return (
-    <ThemeProvider theme={theme}>
+    <div>
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
@@ -78,7 +107,7 @@ export default function Album() {
               color="text.secondary"
               paragraph
             >
-              For now, I am just going to list my favourites.
+              I am just going to list my favourites.
             </Typography>
             <Stack
               sx={{ pt: 4 }}
@@ -92,9 +121,9 @@ export default function Album() {
           </Container>
         </Box>
         <Container sx={{ py: 8 }} maxWidth="md">
-          {/* End hero unit */}
           <Grid container spacing={4}>
             <Pokemon />
+            <Counter />
             {cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card
@@ -150,6 +179,6 @@ export default function Album() {
         <Copyright />
       </Box>
       {/* End footer */}
-    </ThemeProvider>
+    </div>
   );
 }
