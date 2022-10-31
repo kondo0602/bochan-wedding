@@ -297,31 +297,31 @@ const options: AxiosRequestConfig = {
   url: "https://pokeapi.co/api/v2/pokemon/94",
 };
 
+const pickImageFromAnyGeneration = (sprites: sprites) => {
+  const images = [
+    sprites.versions["generation-i"]["red-blue"].front_default,
+    sprites.versions["generation-i"].yellow.front_default,
+    sprites.versions["generation-ii"].gold.front_default,
+    sprites.versions["generation-ii"].silver.front_default,
+    sprites.versions["generation-ii"].crystal.front_default,
+    sprites.versions["generation-iii"]["ruby-sapphire"].front_default,
+    sprites.versions["generation-iii"]["emerald"].front_default,
+    sprites.versions["generation-iii"]["firered-leafgreen"].front_default,
+    sprites.versions["generation-iv"]["diamond-pearl"].front_default,
+    sprites.versions["generation-iv"]["platinum"].front_default,
+    sprites.versions["generation-iv"]["heartgold-soulsilver"].front_default,
+    sprites.versions["generation-v"]["black-white"].front_default,
+  ];
+
+  return images[Math.floor(Math.random() * images.length)];
+};
+
 function Pokemon() {
   const [pokemonIndex, setPokemonIndex] = useState<number>(0);
   const [pokemonName, setPokemonName] = useState<string>("");
   const [pokemonImage, setPokemonImage] = useState<string>("");
 
-  const pickImageFromAnyGeneration = (sprites: sprites) => {
-    const images = [
-      sprites.versions["generation-i"]["red-blue"].front_default,
-      sprites.versions["generation-i"].yellow.front_default,
-      sprites.versions["generation-ii"].gold.front_default,
-      sprites.versions["generation-ii"].silver.front_default,
-      sprites.versions["generation-ii"].crystal.front_default,
-      sprites.versions["generation-iii"]["ruby-sapphire"].front_default,
-      sprites.versions["generation-iii"]["emerald"].front_default,
-      sprites.versions["generation-iii"]["firered-leafgreen"].front_default,
-      sprites.versions["generation-iv"]["diamond-pearl"].front_default,
-      sprites.versions["generation-iv"]["platinum"].front_default,
-      sprites.versions["generation-iv"]["heartgold-soulsilver"].front_default,
-      sprites.versions["generation-v"]["black-white"].front_default,
-    ];
-
-    return images[Math.floor(Math.random() * images.length)];
-  };
-
-  useEffect(() => {
+  const fetchPokemon = () => {
     axios(options)
       .then((res: AxiosResponse<pokeApiResponse>) => {
         const { data } = res;
@@ -330,6 +330,10 @@ function Pokemon() {
         setPokemonImage(pickImageFromAnyGeneration(data.sprites));
       })
       .catch((error: AxiosError) => console.log(error));
+  };
+
+  useEffect(() => {
+    fetchPokemon();
   }, []);
 
   return (
@@ -337,7 +341,7 @@ function Pokemon() {
       id={pokemonIndex}
       name={pokemonName}
       image={pokemonImage}
-      // handleFetch={fetchPokemon}
+      handleFetch={fetchPokemon}
     />
   );
 }
@@ -346,12 +350,11 @@ type pokemonPresenterProps = {
   id: number;
   name: string;
   image: string;
-  // handleFetch: () => void;
+  handleFetch: () => void;
 };
 
 const PokemonPresenter = (props: pokemonPresenterProps) => {
-  const { id, name, image } = props;
-  // const { id, name, image, handleFetch } = props;
+  const { id, name, image, handleFetch } = props;
 
   return (
     <Grid item key={id} xs={12} sm={6} md={4}>
@@ -382,9 +385,8 @@ const PokemonPresenter = (props: pokemonPresenterProps) => {
           <Typography>{name}</Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">
-            {/* <Button size="small" onClick={handleFetch}> */}
-            View
+          <Button size="small" onClick={handleFetch}>
+            Fetch
           </Button>
         </CardActions>
       </Card>
