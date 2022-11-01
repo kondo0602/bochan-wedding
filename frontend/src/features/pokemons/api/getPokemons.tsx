@@ -8,12 +8,8 @@ const pickImageFromAnyGeneration = (sprites: sprites) => {
     sprites.versions["generation-i"].yellow.front_default,
     sprites.versions["generation-ii"].gold.front_default,
     sprites.versions["generation-ii"].silver.front_default,
-    sprites.versions["generation-ii"].crystal.front_default,
-    sprites.versions["generation-iii"]["ruby-sapphire"].front_default,
-    sprites.versions["generation-iii"]["emerald"].front_default,
     sprites.versions["generation-iii"]["firered-leafgreen"].front_default,
     sprites.versions["generation-iv"]["diamond-pearl"].front_default,
-    sprites.versions["generation-iv"]["platinum"].front_default,
     sprites.versions["generation-iv"]["heartgold-soulsilver"].front_default,
     sprites.versions["generation-v"]["black-white"].front_default,
   ];
