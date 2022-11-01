@@ -43,27 +43,40 @@ const PokemonPresenter = (props: pokemonPresenterProps) => {
           flexDirection: "column",
         }}
       >
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="h2"
+          sx={{ pt: 2, pl: 2 }}
+        >
+          <CatchingPokemonSharpIcon sx={{ pt: 1, mr: 1 }} />
+          Poke API
+        </Typography>
         {/* 初代と2代目の画像が大きいので統一的に表示できるように修正する */}
         <CardMedia
           component="img"
-          sx={
-            {
-              // 16: 9,
-              // pt: "56.25%",
-            }
-          }
+          sx={{
+            marginX: "auto",
+            width: 200,
+            // 16: 9,
+            // pt: "56.25%",
+          }}
           image={image}
           alt="pokemon"
         />
         <CardContent sx={{ flexGrow: 1 }}>
           <Typography gutterBottom variant="h5" component="h2">
-            <CatchingPokemonSharpIcon sx={{ pt: 1, mr: 1 }} />
-            Poke API
+            {name}
           </Typography>
-          <Typography>{name}</Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small" onClick={handleFetch}>
+        <CardActions
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Button variant="contained" color="primary" onClick={handleFetch}>
             Fetch
           </Button>
         </CardActions>
