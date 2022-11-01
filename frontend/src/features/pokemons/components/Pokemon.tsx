@@ -32,7 +32,7 @@ type pokemonPresenterProps = {
 };
 
 const PokemonPresenter = (props: pokemonPresenterProps) => {
-  const { id, name, image, handleFetch } = props;
+  const { id, image, handleFetch } = props;
 
   return (
     <Grid item key={id} xs={12} sm={6} md={4}>
@@ -63,7 +63,10 @@ const PokemonPresenter = (props: pokemonPresenterProps) => {
           alt="pokemon"
         />
         <CardContent sx={{ flexGrow: 1 }}>
-          <Typography gutterBottom>{name}</Typography>
+          <Typography gutterBottom>
+            On the night of a full moon, if shadows move on their own and laugh,
+            it must be Gengar’s doing.
+          </Typography>
         </CardContent>
         <CardActions
           sx={{
