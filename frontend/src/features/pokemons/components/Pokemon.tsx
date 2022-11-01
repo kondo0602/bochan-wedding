@@ -50,7 +50,7 @@ const PokemonPresenter = (props: pokemonPresenterProps) => {
           sx={{ pt: 2, pl: 2 }}
         >
           <CatchingPokemonSharpIcon sx={{ pt: 1, mr: 1 }} />
-          Poke API
+          Genger API
         </Typography>
         {/* 初代と2代目の画像が大きいので統一的に表示できるように修正する */}
         <CardMedia
@@ -58,25 +58,22 @@ const PokemonPresenter = (props: pokemonPresenterProps) => {
           sx={{
             marginX: "auto",
             width: 200,
-            // 16: 9,
-            // pt: "56.25%",
           }}
           image={image}
           alt="pokemon"
         />
         <CardContent sx={{ flexGrow: 1 }}>
-          <Typography gutterBottom variant="h5" component="h2">
-            {name}
-          </Typography>
+          <Typography gutterBottom>{name}</Typography>
         </CardContent>
         <CardActions
           sx={{
+            pb: 2,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          <Button variant="contained" color="primary" onClick={handleFetch}>
+          <Button variant="contained" onClick={handleFetch}>
             Fetch
           </Button>
         </CardActions>

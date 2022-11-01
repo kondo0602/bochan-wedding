@@ -8,6 +8,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import * as Scry from "scryfall-sdk";
 import { Card as MTGCard } from "scryfall-sdk";
+import StyleIcon from "@mui/icons-material/Style";
 
 const MtgCard = () => {
   const [card, setCard] = useState<MTGCard>();
@@ -35,7 +36,8 @@ const MtgCard = () => {
           component="h2"
           sx={{ pt: 2, pl: 2 }}
         >
-          MTG Scry API
+          <StyleIcon sx={{ pt: 1, mr: 1 }} />
+          MTG API
         </Typography>
         <CardMedia
           component="img"
@@ -53,6 +55,7 @@ const MtgCard = () => {
         </CardContent>
         <CardActions
           sx={{
+            pb: 2,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
