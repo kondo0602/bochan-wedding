@@ -15,6 +15,7 @@ import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import { Pokemon } from "features/pokemons";
 import Counter from "components/Counter";
+import MtgCard from "components/MtgCard";
 
 function Copyright() {
   return (
@@ -29,7 +30,7 @@ function Copyright() {
   );
 }
 
-const cards = [1, 2, 3, 4, 5, 6, 7];
+const cards = [1, 2, 3, 4, 5, 6];
 
 export default function Album() {
   return (
@@ -91,6 +92,7 @@ export default function Album() {
           <Grid container spacing={4}>
             <Pokemon />
             <Counter />
+            <MtgCard />
             {cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card
