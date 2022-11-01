@@ -10,9 +10,32 @@ import AvTimerIcon from "@mui/icons-material/AvTimer";
 
 const Counter = () => {
   const [count, setCount] = useState<number>(0);
-  const increment = () => setCount((prevCount) => prevCount + 1);
-  const decrement = () => setCount((prevCount) => prevCount - 1);
-  const double = () => setCount((prevCount) => prevCount * 2);
+  const [error, setError] = useState<boolean>(false);
+  const increment = () => {
+    if (999 < count + 1) {
+      setError(true);
+      return;
+    }
+
+    setCount((prevCount) => prevCount + 1);
+    setError(false);
+  };
+  const decrement = () => {
+    if (count - 1 < -99) {
+      setError(true);
+      return;
+    }
+    setCount((prevCount) => prevCount - 1);
+    setError(false);
+  };
+  const double = () => {
+    if (count * 2 < -99 || 999 < count * 2) {
+      setError(true);
+      return;
+    }
+    setCount((prevCount) => prevCount * 2);
+    setError(false);
+  };
 
   return (
     <Grid item key={1} xs={12} sm={6} md={4}>
@@ -42,7 +65,12 @@ const Counter = () => {
           {count}
         </Typography>
         <CardContent sx={{ flexGrow: 1 }}>
-          <Typography gutterBottom variant="h5" component="h2"></Typography>
+          {error && (
+            <Typography color="error">
+              Do not operate the number to become 4 digits as it will protrude
+              from the frame.
+            </Typography>
+          )}
         </CardContent>
         <CardActions
           sx={{
