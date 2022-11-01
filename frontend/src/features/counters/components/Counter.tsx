@@ -5,37 +5,11 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
 import AvTimerIcon from "@mui/icons-material/AvTimer";
+import useCounter from "../hooks/useCounter";
 
-const Counter = () => {
-  const [count, setCount] = useState<number>(0);
-  const [error, setError] = useState<boolean>(false);
-  const increment = () => {
-    if (999 < count + 1) {
-      setError(true);
-      return;
-    }
-
-    setCount((prevCount) => prevCount + 1);
-    setError(false);
-  };
-  const decrement = () => {
-    if (count - 1 < -99) {
-      setError(true);
-      return;
-    }
-    setCount((prevCount) => prevCount - 1);
-    setError(false);
-  };
-  const double = () => {
-    if (count * 2 < -99 || 999 < count * 2) {
-      setError(true);
-      return;
-    }
-    setCount((prevCount) => prevCount * 2);
-    setError(false);
-  };
+export const Counter = () => {
+  const { count, error, increment, decrement, double } = useCounter();
 
   return (
     <Grid item key={1} xs={12} sm={6} md={4}>
@@ -94,5 +68,3 @@ const Counter = () => {
     </Grid>
   );
 };
-
-export default Counter;

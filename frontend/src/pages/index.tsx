@@ -9,7 +9,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Pokemon } from "features/pokemons";
-import Counter from "components/Counter";
+import { Counter } from "features/counters";
 import MtgCard from "components/MtgCard";
 import Footer from "components/Footer";
 import Header from "components/Header";
