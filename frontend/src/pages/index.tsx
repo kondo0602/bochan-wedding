@@ -1,48 +1,25 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
-import LaptopChromebookSharpIcon from "@mui/icons-material/LaptopChromebookSharp";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
 import { Pokemon } from "features/pokemons";
 import Counter from "components/Counter";
 import MtgCard from "components/MtgCard";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import Footer from "components/Footer";
+import Header from "components/Header";
 
 const cards = [1, 2, 3, 4, 5, 6];
 
 export default function Album() {
   return (
     <div>
-      <AppBar position="relative">
-        <Toolbar>
-          <LaptopChromebookSharpIcon sx={{ mr: 2 }} />
-          <Typography variant="h6" color="inherit" noWrap>
-            React Training Lab
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <Header />
       <main>
         <Box
           sx={{
@@ -67,25 +44,9 @@ export default function Album() {
               color="text.secondary"
               paragraph
             >
-              This is a project I started for practicing React.
+              This is a project I started for practicing React. I am just going
+              to list my favourites.
             </Typography>
-            <Typography
-              variant="h5"
-              align="center"
-              color="text.secondary"
-              paragraph
-            >
-              I am just going to list my favourites.
-            </Typography>
-            <Stack
-              sx={{ pt: 4 }}
-              direction="row"
-              spacing={2}
-              justifyContent="center"
-            >
-              <Button variant="contained">Main call to action</Button>
-              <Button variant="outlined">Secondary action</Button>
-            </Stack>
           </Container>
         </Box>
         <Container sx={{ py: 8 }} maxWidth="md">
@@ -104,12 +65,6 @@ export default function Album() {
                 >
                   <CardMedia
                     component="img"
-                    sx={
-                      {
-                        // 16: 9,
-                        // pt: "56.25%",
-                      }
-                    }
                     image="https://source.unsplash.com/random"
                     alt="random"
                   />
@@ -132,22 +87,7 @@ export default function Album() {
           </Grid>
         </Container>
       </main>
-      {/* Footer */}
-      <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="text.secondary"
-          component="p"
-        >
-          Something here to give the footer a purpose!
-        </Typography>
-        <Copyright />
-      </Box>
-      {/* End footer */}
+      <Footer />
     </div>
   );
 }
