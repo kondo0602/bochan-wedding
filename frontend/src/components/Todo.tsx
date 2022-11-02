@@ -1,4 +1,3 @@
-import * as React from "react";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -7,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import { Input } from "@mui/material";
+import { useState } from "react";
 
 type todoItem = {
   id: string;
@@ -15,21 +15,68 @@ type todoItem = {
 };
 
 type todoProps = {
+  todoInput: string;
   todoItems: todoItem[];
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleDelete: (id: string) => void;
 };
 
+const createRandomString = (): string =>
+  Math.random().toString(32).substring(2);
+
 export const Todo = () => {
+  const [todoInput, setTodoInput] = useState<string>("");
   const todoItems: todoItem[] = [
-    { id: "1", content: "go to the gym and workout", isFinished: false },
     {
-      id: "2",
+      id: createRandomString(),
+      content: "go to the gym and workout",
+      isFinished: false,
+    },
+    {
+      id: createRandomString(),
       content: "go to the supermarket and buy eggs",
       isFinished: false,
     },
-    { id: "3", content: "brush between teeth", isFinished: true },
+    {
+      id: createRandomString(),
+      content: "brush between teeth",
+      isFinished: true,
+    },
   ];
 
-  return <TodoPresenter todoItems={todoItems} />;
+  const [todoList, setTodoList] = useState<todoItem[]>(todoItems);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(todoInput);
+
+    const todoItem = {
+      id: createRandomString(),
+      content: todoInput,
+      isFinished: false,
+    };
+    setTodoList([...todoList, todoItem]);
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTodoInput(event.target.value);
+  };
+
+  const handleDelete = (todoId: string) => {
+    const newTodoList = todoList.filter((todo) => todo.id !== todoId);
+    setTodoList(newTodoList);
+  };
+
+  return (
+    <TodoPresenter
+      todoInput={todoInput}
+      todoItems={todoList}
+      handleSubmit={handleSubmit}
+      handleChange={handleChange}
+      handleDelete={handleDelete}
+    />
+  );
 };
 
 const TodoPresenter = (props: todoProps) => {
@@ -67,7 +114,12 @@ const TodoPresenter = (props: todoProps) => {
                 </Typography>
               </Grid>
               <Grid item xs={2}>
-                <Button variant="contained" size="small" color="error">
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="error"
+                  onClick={() => props.handleDelete(todoItem.id)}
+                >
                   Delete
                 </Button>
               </Grid>
@@ -76,8 +128,12 @@ const TodoPresenter = (props: todoProps) => {
         })}
       </CardContent>
       <CardActions>
-        <Input fullWidth />
-        <Button size="small">Add</Button>
+        <form onSubmit={props.handleSubmit}>
+          <Input value={props.todoInput} onChange={props.handleChange} />
+          <Button type="submit" size="small">
+            Add
+          </Button>
+        </form>
       </CardActions>
     </Card>
   );
