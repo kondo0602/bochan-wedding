@@ -13,7 +13,7 @@ import { Counter } from "features/counters";
 import MtgCard from "components/MtgCard";
 import Footer from "components/Footer";
 import Header from "components/Header";
-import Todo from "components/Todo";
+import { Todo } from "features/todos";
 
 const cards = [1, 2, 3];
 
