@@ -14,17 +14,13 @@ const TodoItem = ({
   handleChangeStatus,
   handleDelete,
 }: TodoItemProps) => {
-  return (
+  return todoItem.done ? (
     <Grid container direction="row" spacing={2}>
       <Grid item>
-        {todoItem.done ? (
-          <Button onClick={() => handleChangeStatus(todoItem.id)}>done</Button>
-        ) : (
-          <Button onClick={() => handleChangeStatus(todoItem.id)}>todo</Button>
-        )}
+        <Button onClick={() => handleChangeStatus(todoItem.id)}>done</Button>
       </Grid>
       <Grid item xs={9}>
-        <Typography gutterBottom variant="h5" component="h2">
+        <Typography color="text.secondary" gutterBottom variant="h5">
           {todoItem.content}
         </Typography>
       </Grid>
@@ -37,6 +33,17 @@ const TodoItem = ({
         >
           Delete
         </Button>
+      </Grid>
+    </Grid>
+  ) : (
+    <Grid container direction="row" spacing={2}>
+      <Grid item>
+        <Button onClick={() => handleChangeStatus(todoItem.id)}>todo</Button>
+      </Grid>
+      <Grid item xs={9}>
+        <Typography color="text.primary" gutterBottom variant="h5">
+          {todoItem.content}
+        </Typography>
       </Grid>
     </Grid>
   );
