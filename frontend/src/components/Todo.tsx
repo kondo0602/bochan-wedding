@@ -97,36 +97,45 @@ const TodoPresenter = (props: todoProps) => {
         <TaskAltIcon sx={{ pt: 1, mr: 1 }} />
         Todo List
       </Typography>
-      <CardContent sx={{ flexGrow: 1 }}>
-        {props.todoItems.map((todoItem) => {
-          return (
-            <Grid container key={todoItem.id} spacing={2}>
-              <Grid item xs={1}>
-                {todoItem.isFinished ? (
-                  <Button>done</Button>
-                ) : (
-                  <Button>todo</Button>
-                )}
+      {props.todoItems.length === 0 ? (
+        <CardContent sx={{ flexGrow: 1 }}>
+          <Typography gutterBottom variant="h5" component="h2">
+            You have nothing to do!
+          </Typography>
+        </CardContent>
+      ) : (
+        <CardContent sx={{ flexGrow: 1 }}>
+          {props.todoItems.map((todoItem) => {
+            return (
+              <Grid container key={todoItem.id} spacing={2}>
+                <Grid item xs={1}>
+                  {todoItem.isFinished ? (
+                    <Button>done</Button>
+                  ) : (
+                    <Button>todo</Button>
+                  )}
+                </Grid>
+                <Grid item xs={9}>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {todoItem.content}
+                  </Typography>
+                </Grid>
+                <Grid item xs={2}>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    color="error"
+                    onClick={() => props.handleDelete(todoItem.id)}
+                  >
+                    Delete
+                  </Button>
+                </Grid>
               </Grid>
-              <Grid item xs={9}>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {todoItem.content}
-                </Typography>
-              </Grid>
-              <Grid item xs={2}>
-                <Button
-                  variant="contained"
-                  size="small"
-                  color="error"
-                  onClick={() => props.handleDelete(todoItem.id)}
-                >
-                  Delete
-                </Button>
-              </Grid>
-            </Grid>
-          );
-        })}
-      </CardContent>
+            );
+          })}
+        </CardContent>
+      )}
+
       <CardActions>
         <form onSubmit={props.handleSubmit}>
           <Input value={props.todoInput} onChange={props.handleChange} />
