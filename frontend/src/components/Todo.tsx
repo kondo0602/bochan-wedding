@@ -11,14 +11,15 @@ import { useState } from "react";
 type todoItem = {
   id: string;
   content: string;
-  isFinished: boolean;
+  done: boolean;
 };
 
 type todoProps = {
   todoInput: string;
   todoItems: todoItem[];
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeStatus: (id: string) => void;
   handleDelete: (id: string) => void;
 };
 
@@ -31,17 +32,17 @@ export const Todo = () => {
     {
       id: createRandomString(),
       content: "go to the gym and workout",
-      isFinished: false,
+      done: false,
     },
     {
       id: createRandomString(),
       content: "go to the supermarket and buy eggs",
-      isFinished: false,
+      done: false,
     },
     {
       id: createRandomString(),
       content: "brush between teeth",
-      isFinished: true,
+      done: true,
     },
   ];
 
@@ -54,12 +55,25 @@ export const Todo = () => {
     const todoItem = {
       id: createRandomString(),
       content: todoInput,
-      isFinished: false,
+      done: false,
     };
     setTodoList([...todoList, todoItem]);
+    setTodoInput("");
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeStatus = (id: string) => {
+    const newTodoList: todoItem[] = todoList.map((todoItem) => {
+      if (todoItem.id === id) {
+        todoItem.done = !todoItem.done;
+      }
+
+      return todoItem;
+    });
+
+    setTodoList(newTodoList);
+  };
+
+  const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTodoInput(event.target.value);
   };
 
@@ -73,7 +87,8 @@ export const Todo = () => {
       todoInput={todoInput}
       todoItems={todoList}
       handleSubmit={handleSubmit}
-      handleChange={handleChange}
+      handleChangeStatus={handleChangeStatus}
+      handleChangeInput={handleChangeInput}
       handleDelete={handleDelete}
     />
   );
@@ -107,12 +122,20 @@ const TodoPresenter = (props: todoProps) => {
         <CardContent sx={{ flexGrow: 1 }}>
           {props.todoItems.map((todoItem) => {
             return (
-              <Grid container key={todoItem.id} spacing={2}>
-                <Grid item xs={1}>
-                  {todoItem.isFinished ? (
-                    <Button>done</Button>
+              <Grid container direction="row" key={todoItem.id} spacing={2}>
+                <Grid item>
+                  {todoItem.done ? (
+                    <Button
+                      onClick={() => props.handleChangeStatus(todoItem.id)}
+                    >
+                      done
+                    </Button>
                   ) : (
-                    <Button>todo</Button>
+                    <Button
+                      onClick={() => props.handleChangeStatus(todoItem.id)}
+                    >
+                      todo
+                    </Button>
                   )}
                 </Grid>
                 <Grid item xs={9}>
@@ -120,7 +143,7 @@ const TodoPresenter = (props: todoProps) => {
                     {todoItem.content}
                   </Typography>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item>
                   <Button
                     variant="contained"
                     size="small"
@@ -135,10 +158,9 @@ const TodoPresenter = (props: todoProps) => {
           })}
         </CardContent>
       )}
-
       <CardActions>
         <form onSubmit={props.handleSubmit}>
-          <Input value={props.todoInput} onChange={props.handleChange} />
+          <Input value={props.todoInput} onChange={props.handleChangeInput} />
           <Button type="submit" size="small">
             Add
           </Button>
