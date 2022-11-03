@@ -14,6 +14,7 @@ import MtgCard from "components/MtgCard";
 import Footer from "components/Footer";
 import Header from "components/Header";
 import { Todo } from "features/todos";
+import MtgDatabase from "components/MtgDatabase";
 
 const cards = [1, 2, 3];
 
@@ -55,8 +56,11 @@ export default function Album() {
             <Pokemon />
             <Counter />
             <MtgCard />
-            <Grid item key={1} xs={12} sm={12} md={12}>
+            <Grid item xs={12} sm={12} md={12}>
               <Todo />
+            </Grid>
+            <Grid item xs={12} sm={12} md={12}>
+              <MtgDatabase />
             </Grid>
             {cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
