@@ -25,8 +25,16 @@ const useTodo = () => {
 
   const [todoList, setTodoList] = useState<todoItem[]>(initialList);
 
+  const [tooLongInputError, setTooLongInputError] = useState<boolean>(false);
+  const [tooManyTodoError, setTooManyTodoError] = useState<boolean>(false);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (todoList.length === 4) {
+      setTooManyTodoError(true);
+      return;
+    }
 
     const todoItem = {
       id: createRandomString(),
@@ -38,6 +46,13 @@ const useTodo = () => {
   };
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTooLongInputError(false);
+    const input = event.target.value;
+
+    if (input.length > 30) {
+      setTooLongInputError(true);
+    }
+
     setTodoInput(event.target.value);
   };
 
@@ -56,11 +71,14 @@ const useTodo = () => {
   const handleDelete = (todoId: string) => {
     const newTodoList = todoList.filter((todo) => todo.id !== todoId);
     setTodoList(newTodoList);
+    setTooManyTodoError(false);
   };
 
   return {
     todoInput,
     todoList,
+    tooLongInputError,
+    tooManyTodoError,
     handleSubmit,
     handleChangeInput,
     handleChangeStatus,

@@ -12,6 +12,8 @@ export const Todo = () => {
   const {
     todoInput,
     todoList,
+    tooLongInputError,
+    tooManyTodoError,
     handleSubmit,
     handleChangeInput,
     handleChangeStatus,
@@ -62,11 +64,29 @@ export const Todo = () => {
           direction="row"
           onSubmit={handleSubmit}
         >
-          <Grid item xs={11}>
-            <Input fullWidth value={todoInput} onChange={handleChangeInput} />
-          </Grid>
           <Grid item>
-            <Button type="submit" size="small">
+            {tooLongInputError && (
+              <Typography color="red" gutterBottom>
+                It is long... can you make it within 30 characters?
+              </Typography>
+            )}
+            {tooManyTodoError && (
+              <Typography color="red" gutterBottom>
+                You can not do that many, why do not you finish one first?
+              </Typography>
+            )}
+          </Grid>
+          <Grid item xs={11}>
+            <Input
+              fullWidth
+              value={todoInput}
+              placeholder="Please Enter TODO!"
+              onChange={handleChangeInput}
+            />
+          </Grid>
+
+          <Grid item>
+            <Button type="submit" size="small" disabled={tooLongInputError}>
               Add
             </Button>
           </Grid>
