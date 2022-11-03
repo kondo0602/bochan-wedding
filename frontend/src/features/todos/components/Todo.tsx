@@ -4,7 +4,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
-import { Input } from "@mui/material";
+import { Grid, Input } from "@mui/material";
 import useTodo from "../hooks/useTodo";
 import TodoItem from "./TodoItem";
 
@@ -55,13 +55,22 @@ export const Todo = () => {
           })}
         </CardContent>
       )}
-      <CardActions>
-        <form onSubmit={handleSubmit}>
-          <Input value={todoInput} onChange={handleChangeInput} />
-          <Button type="submit" size="small">
-            Add
-          </Button>
-        </form>
+      <CardActions sx={{ pl: 2, pb: 2 }}>
+        <Grid
+          container
+          component="form"
+          direction="row"
+          onSubmit={handleSubmit}
+        >
+          <Grid item xs={11}>
+            <Input fullWidth value={todoInput} onChange={handleChangeInput} />
+          </Grid>
+          <Grid item>
+            <Button type="submit" size="small">
+              Add
+            </Button>
+          </Grid>
+        </Grid>
       </CardActions>
     </Card>
   );
