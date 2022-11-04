@@ -6,18 +6,26 @@ import StyleIcon from "@mui/icons-material/Style";
 import { Card as MtgCard, CardFilter } from "../features/magics/types/index";
 import { useState } from "react";
 import axios from "axios";
-import { CardContent, CardMedia, Stack } from "@mui/material";
+import { CardContent, CardMedia, Input, Stack } from "@mui/material";
 
 type Card = {};
 
 export const MtgDatabase = () => {
   const [cards, setCards] = useState<MtgCard[]>([]);
+  const [searchWord, setSearchWord] = useState<string>("");
+
+  const handleChangeSearchWord = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const input = event.target.value;
+    setSearchWord(input);
+  };
 
   const handleSubmit = () => {
     const endpoint = "https://api.magicthegathering.io/v1/cards";
 
     const params: CardFilter = {
-      name: "swamp",
+      name: searchWord,
       // rarity: "rare",
       pageSize: 5,
     };
@@ -54,6 +62,12 @@ export const MtgDatabase = () => {
           <Typography gutterBottom variant="h5" component="h2">
             Please search.
           </Typography>
+          <Input
+            fullWidth
+            value={searchWord}
+            placeholder="Please Enter TODO!"
+            onChange={handleChangeSearchWord}
+          />
         </CardContent>
       ) : (
         <CardContent sx={{ flexGrow: 1 }}>
