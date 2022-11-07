@@ -57,20 +57,18 @@ export const MtgDatabase = () => {
         <StyleIcon sx={{ pt: 1, mr: 1 }} />
         Magic database
       </Typography>
-      {cards.length === 0 ? (
-        <CardContent sx={{ flexGrow: 1 }}>
+      <CardContent sx={{ flexGrow: 1 }}>
+        <Input
+          fullWidth
+          value={searchWord}
+          placeholder="Please Enter TODO!"
+          onChange={handleChangeSearchWord}
+        />
+        {cards.length === 0 ? (
           <Typography gutterBottom variant="h5" component="h2">
-            Please search.
+            no result.
           </Typography>
-          <Input
-            fullWidth
-            value={searchWord}
-            placeholder="Please Enter TODO!"
-            onChange={handleChangeSearchWord}
-          />
-        </CardContent>
-      ) : (
-        <CardContent sx={{ flexGrow: 1 }}>
+        ) : (
           <Stack direction="row" spacing={2}>
             {cards.map((card) => {
               return (
@@ -86,8 +84,8 @@ export const MtgDatabase = () => {
               );
             })}
           </Stack>
-        </CardContent>
-      )}
+        )}
+      </CardContent>
       <CardActions sx={{ pl: 2, pb: 2 }}>
         <Button variant="contained" onClick={handleSubmit}>
           Fetch
