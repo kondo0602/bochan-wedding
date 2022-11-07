@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Card as MtgCard, CardFilter } from "../features/magics/types/index";
+import { Card, CardFilter } from "../features/magics/types/index";
 import { useState } from "react";
 import axios from "axios";
 import {
@@ -15,9 +15,10 @@ import {
 } from "@mui/material";
 
 export const SearchForm = () => {
-  const [cards, setCards] = useState<MtgCard[]>([]);
+  const [cards, setCards] = useState<Card[]>([]);
   const [searchWord, setSearchWord] = useState<string>("");
   const [color, setColor] = useState<string>("");
+  const [rarity, setRarity] = useState<string>("");
 
   const handleChangeSearchWord = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -31,13 +32,18 @@ export const SearchForm = () => {
     setColor(input);
   };
 
+  const handleChangeRarity = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const input = event.target.value;
+    setRarity(input);
+  };
+
   const handleSubmit = () => {
     const endpoint = "https://api.magicthegathering.io/v1/cards";
 
     const params: CardFilter = {
       name: searchWord,
       colors: color,
-      // rarity: "rare",
+      rarity: rarity,
       pageSize: 5,
     };
 
@@ -74,6 +80,29 @@ export const SearchForm = () => {
           <FormControlLabel value="B" control={<Radio />} label="Black" />
           <FormControlLabel value="R" control={<Radio />} label="Red" />
           <FormControlLabel value="G" control={<Radio />} label="Green" />
+        </RadioGroup>
+
+        <FormLabel id="rarity">Rarity</FormLabel>
+        <RadioGroup
+          row
+          aria-labelledby="rarity"
+          defaultValue=""
+          name="radio-buttons-group"
+          onChange={handleChangeRarity}
+        >
+          <FormControlLabel value="" control={<Radio />} label="Unspecified" />
+          <FormControlLabel value="Common" control={<Radio />} label="Common" />
+          <FormControlLabel
+            value="Uncommon"
+            control={<Radio />}
+            label="Uncommon"
+          />
+          <FormControlLabel value="Rare" control={<Radio />} label="Rare" />
+          <FormControlLabel
+            value="Mythic Rare"
+            control={<Radio />}
+            label="Mythic Rare"
+          />
         </RadioGroup>
       </FormControl>
       <Button variant="contained" onClick={handleSubmit}>
