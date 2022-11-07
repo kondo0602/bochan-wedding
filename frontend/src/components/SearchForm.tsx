@@ -19,6 +19,7 @@ export const SearchForm = () => {
   const [searchWord, setSearchWord] = useState<string>("");
   const [color, setColor] = useState<string>("");
   const [rarity, setRarity] = useState<string>("");
+  const [type, setType] = useState<string>("");
 
   const handleChangeSearchWord = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -37,12 +38,18 @@ export const SearchForm = () => {
     setRarity(input);
   };
 
+  const handleChangeType = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const input = event.target.value;
+    setType(input);
+  };
+
   const handleSubmit = () => {
     const endpoint = "https://api.magicthegathering.io/v1/cards";
 
     const params: CardFilter = {
       name: searchWord,
       colors: color,
+      types: type,
       rarity: rarity,
       pageSize: 5,
     };
@@ -103,6 +110,47 @@ export const SearchForm = () => {
             control={<Radio />}
             label="Mythic Rare"
           />
+        </RadioGroup>
+        <FormLabel id="type">Type</FormLabel>
+        <RadioGroup
+          row
+          aria-labelledby="type"
+          defaultValue=""
+          name="type"
+          onChange={handleChangeType}
+        >
+          <FormControlLabel value="" control={<Radio />} label="Unspecified" />
+          <FormControlLabel
+            value="Creature"
+            control={<Radio />}
+            label="Creature"
+          />
+          <FormControlLabel
+            value="Instant"
+            control={<Radio />}
+            label="Instant"
+          />
+          <FormControlLabel
+            value="Sorcery"
+            control={<Radio />}
+            label="Sorcery"
+          />
+          <FormControlLabel
+            value="Artifact"
+            control={<Radio />}
+            label="Artifact"
+          />
+          <FormControlLabel
+            value="Enchantment"
+            control={<Radio />}
+            label="Enchantment"
+          />
+          <FormControlLabel
+            value="Planeswalker"
+            control={<Radio />}
+            label="Planeswalker"
+          />
+          <FormControlLabel value="Land" control={<Radio />} label="Land" />
         </RadioGroup>
       </FormControl>
       <Button variant="contained" onClick={handleSubmit}>
