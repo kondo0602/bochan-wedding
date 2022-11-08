@@ -13,6 +13,7 @@ import {
   RadioGroup,
   Stack,
 } from "@mui/material";
+import CardPreviewDialog from "./CardPreviewDialog";
 
 export const SearchForm = () => {
   const [cards, setCards] = useState<Card[]>([]);
@@ -20,6 +21,9 @@ export const SearchForm = () => {
   const [color, setColor] = useState<string>("");
   const [rarity, setRarity] = useState<string>("");
   const [type, setType] = useState<string>("");
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [previewCard, setPreviewCard] = useState<Card>();
 
   const handleChangeSearchWord = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -62,6 +66,17 @@ export const SearchForm = () => {
         console.log(cards);
       })
       .catch((error) => console.log(error));
+  };
+
+  const handlePreview = (card: Card) => {
+    console.log(card);
+    setIsOpen(true);
+    setPreviewCard(card);
+  };
+
+  const handleClose = () => {
+    console.log("Leave!");
+    setIsOpen(false);
   };
 
   return (
@@ -164,19 +179,25 @@ export const SearchForm = () => {
         <Stack direction="row" spacing={2}>
           {cards.map((card) => {
             return (
-              <CardMedia
-                key={card.id}
-                component="img"
-                sx={{
-                  width: 90,
-                }}
-                image={card.imageUrl}
-                alt="magic"
-              />
+              <div key={card.id} onClick={() => handlePreview(card)}>
+                <CardMedia
+                  component="img"
+                  sx={{
+                    width: 150,
+                  }}
+                  image={card.imageUrl}
+                  alt="magic"
+                />
+              </div>
             );
           })}
         </Stack>
       )}
+      <CardPreviewDialog
+        open={isOpen}
+        onClose={handleClose}
+        card={previewCard}
+      />
     </>
   );
 };
