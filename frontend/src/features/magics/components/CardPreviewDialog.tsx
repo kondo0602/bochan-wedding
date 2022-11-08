@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import { Card } from "../features/magics/types/index";
+import { Card } from "../types/index";
 import React from "react";
 import { CardMedia, Grid } from "@mui/material";
 import Dialog from "@mui/material/Dialog";

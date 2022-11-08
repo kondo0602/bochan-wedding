@@ -55,7 +55,9 @@ export const SearchForm = () => {
       colors: color,
       types: type,
       rarity: rarity,
+      random: true,
       pageSize: 5,
+      contains: "imageUrl",
     };
 
     axios

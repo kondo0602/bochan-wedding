@@ -10,11 +10,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Pokemon } from "features/pokemons";
 import { Counter } from "features/counters";
-import MtgCard from "components/MtgCard";
+import MtgCard from "@/features/magics/components/MtgCard";
 import Footer from "components/Footer";
 import Header from "components/Header";
 import { Todo } from "features/todos";
-import MtgDatabase from "components/MtgDatabase";
+import MtgDatabase from "@/features/magics/components/MtgDatabase";
 
 const cards = [1, 2, 3];
 
