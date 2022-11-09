@@ -2,7 +2,7 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import StyleIcon from "@mui/icons-material/Style";
 import { CardContent } from "@mui/material";
-import { SearchForm } from "./SearchForm";
+import { MagicSearchForm } from "./MagicSearchForm";
 
 export const MtgDatabase = () => {
   return (
@@ -23,7 +23,7 @@ export const MtgDatabase = () => {
         Magic database
       </Typography>
       <CardContent sx={{ flexGrow: 1 }}>
-        <SearchForm />
+        <MagicSearchForm />
       </CardContent>
     </Card>
   );

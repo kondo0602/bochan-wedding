@@ -1,8 +1,3 @@
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { Card, CardFilter } from "../features/magics/types/index";
-import { useState } from "react";
-import axios from "axios";
 import {
   CardMedia,
   FormControl,
@@ -13,62 +8,26 @@ import {
   RadioGroup,
   Stack,
 } from "@mui/material";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import { useState } from "react";
+import { useMagicSearchForm } from "../hooks/useMagicSearchForm";
+import { Card } from "../types/index";
 import CardPreviewDialog from "./CardPreviewDialog";
 
-export const SearchForm = () => {
-  const [cards, setCards] = useState<Card[]>([]);
-  const [searchWord, setSearchWord] = useState<string>("");
-  const [color, setColor] = useState<string>("");
-  const [rarity, setRarity] = useState<string>("");
-  const [type, setType] = useState<string>("");
+export const MagicSearchForm = () => {
+  const {
+    cards,
+    searchWord,
+    handleChangeSearchWord,
+    handleChangeColor,
+    handleChangeRarity,
+    handleChangeType,
+    handleSubmit,
+  } = useMagicSearchForm();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [previewCard, setPreviewCard] = useState<Card>();
-
-  const handleChangeSearchWord = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const input = event.target.value;
-    setSearchWord(input);
-  };
-
-  const handleChangeColor = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const input = event.target.value;
-    setColor(input);
-  };
-
-  const handleChangeRarity = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const input = event.target.value;
-    setRarity(input);
-  };
-
-  const handleChangeType = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const input = event.target.value;
-    setType(input);
-  };
-
-  const handleSubmit = () => {
-    const endpoint = "https://api.magicthegathering.io/v1/cards";
-
-    const params: CardFilter = {
-      name: searchWord,
-      colors: color,
-      types: type,
-      rarity: rarity,
-      random: true,
-      pageSize: 5,
-      contains: "imageUrl",
-    };
-
-    axios
-      .get(endpoint, { params: params })
-      .then((res) => {
-        console.log(res.data);
-        setCards(res.data.cards);
-        console.log(cards);
-      })
-      .catch((error) => console.log(error));
-  };
 
   const handlePreview = (card: Card) => {
     console.log(card);
