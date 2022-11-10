@@ -58,7 +58,7 @@ export const MagicSearchForm = () => {
       { label: "Common", value: "Common" },
       { label: "Uncommon", value: "Uncommon" },
       { label: "Rare", value: "Rare" },
-      { label: "Mythic Rare", value: "Mythic Rare" },
+      { label: "Mythic Rare", value: "Mythic" },
     ],
     name: "Rarity",
     handleChange: handleChangeRarity,
