@@ -1,7 +1,7 @@
-import Card from "@mui/material/Card";
-import Typography from "@mui/material/Typography";
 import StyleIcon from "@mui/icons-material/Style";
 import { CardContent } from "@mui/material";
+import Card from "@mui/material/Card";
+import Typography from "@mui/material/Typography";
 import { MagicSearchForm } from "./MagicSearchForm";
 
 export const MtgDatabase = () => {
@@ -28,5 +28,3 @@ export const MtgDatabase = () => {
     </Card>
   );
 };
-
-export default MtgDatabase;

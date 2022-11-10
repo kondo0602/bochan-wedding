@@ -1,22 +1,14 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Pokemon } from "features/pokemons";
-import { Counter } from "features/counters";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { Counter } from "@/features/counters";
+import { MtgDatabase } from "@/features/magics";
 import MtgCard from "@/features/magics/components/MtgCard";
+import { Pokemon } from "@/features/pokemons";
+import { Todo } from "@/features/todos";
 import Footer from "components/Footer";
 import Header from "components/Header";
-import { Todo } from "features/todos";
-import MtgDatabase from "@/features/magics/components/MtgDatabase";
-
-const cards = [1, 2, 3];
 
 export default function Album() {
   return (
@@ -26,8 +18,7 @@ export default function Album() {
         <Box
           sx={{
             bgcolor: "background.paper",
-            pt: 8,
-            pb: 6,
+            py: 4,
           }}
         >
           <Container maxWidth="sm">
@@ -51,7 +42,7 @@ export default function Album() {
             </Typography>
           </Container>
         </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
+        <Container sx={{ py: 4 }} maxWidth="md">
           <Grid container spacing={4}>
             <Pokemon />
             <Counter />
@@ -62,36 +53,6 @@ export default function Album() {
             <Grid item xs={12} sm={12} md={12}>
               <MtgDatabase />
             </Grid>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card
-                  sx={{
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    image="https://source.unsplash.com/random"
-                    alt="random"
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Heading
-                    </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe
-                      the content.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
           </Grid>
         </Container>
       </main>
