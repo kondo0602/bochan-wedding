@@ -1,10 +1,8 @@
 import { CardMedia, FormControl, Input, Stack } from "@mui/material";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
 import { useMagicSearchForm } from "../hooks/useMagicSearchForm";
-import { Card } from "../types/index";
-import CardPreviewDialog from "./CardPreviewDialog";
+import { MagicSearchFormPreviewDialog } from "./MagicSearchFormPreviewDialog";
 import {
   MagicSearchFormRadioGroup,
   radioButtonGourpProps,
@@ -14,26 +12,16 @@ export const MagicSearchForm = () => {
   const {
     cards,
     searchWord,
+    previewCard,
+    isOpen,
     handleChangeSearchWord,
     handleChangeColor,
     handleChangeRarity,
     handleChangeType,
     handleSubmit,
+    handleOpenPreview,
+    handleClosePreview,
   } = useMagicSearchForm();
-
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [previewCard, setPreviewCard] = useState<Card>();
-
-  const handlePreview = (card: Card) => {
-    console.log(card);
-    setIsOpen(true);
-    setPreviewCard(card);
-  };
-
-  const handleClose = () => {
-    console.log("Leave!");
-    setIsOpen(false);
-  };
 
   const choiceColorGroup: radioButtonGourpProps = {
     radioButtons: [
@@ -89,7 +77,7 @@ export const MagicSearchForm = () => {
         <MagicSearchFormRadioGroup {...choiceColorGroup} />
         <MagicSearchFormRadioGroup {...choiceTypeGroup} />
         <MagicSearchFormRadioGroup {...choiceRarityGroup} />
-        <Stack justifyContent="flex-end">
+        <Stack>
           <Button variant="contained" onClick={handleSubmit}>
             Fetch
           </Button>
@@ -102,7 +90,7 @@ export const MagicSearchForm = () => {
           <Stack direction="row" spacing={2}>
             {cards.map((card) => {
               return (
-                <div key={card.id} onClick={() => handlePreview(card)}>
+                <div key={card.id} onClick={() => handleOpenPreview(card)}>
                   <CardMedia
                     component="img"
                     sx={{
@@ -117,9 +105,9 @@ export const MagicSearchForm = () => {
           </Stack>
         )}
       </Stack>
-      <CardPreviewDialog
+      <MagicSearchFormPreviewDialog
         open={isOpen}
-        onClose={handleClose}
+        onClose={handleClosePreview}
         card={previewCard}
       />
     </>

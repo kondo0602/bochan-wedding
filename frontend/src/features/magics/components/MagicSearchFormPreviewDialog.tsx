@@ -1,8 +1,8 @@
-import Typography from "@mui/material/Typography";
-import { Card } from "../types/index";
-import React from "react";
 import { CardMedia, Grid } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
+import Typography from "@mui/material/Typography";
+import React from "react";
+import { Card } from "../types/index";
 
 type props = {
   open: boolean;
@@ -10,7 +10,7 @@ type props = {
   card: Card | undefined;
 };
 
-function CardPreviewDialog(props: props) {
+export function MagicSearchFormPreviewDialog(props: props) {
   const { open, onClose, card } = props;
 
   const handleClose = () => {
@@ -45,5 +45,3 @@ function CardPreviewDialog(props: props) {
     </Dialog>
   );
 }
-
-export default CardPreviewDialog;

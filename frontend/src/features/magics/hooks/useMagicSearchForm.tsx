@@ -8,6 +8,8 @@ export const useMagicSearchForm = () => {
   const [color, setColor] = useState<string>("");
   const [rarity, setRarity] = useState<string>("");
   const [type, setType] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [previewCard, setPreviewCard] = useState<Card>();
 
   const handleChangeSearchWord = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -54,6 +56,15 @@ export const useMagicSearchForm = () => {
       .catch((error) => console.log(error));
   };
 
+  const handleOpenPreview = (card: Card) => {
+    setIsOpen(true);
+    setPreviewCard(card);
+  };
+
+  const handleClosePreview = () => {
+    setIsOpen(false);
+  };
+
   return {
     cards,
     setCards,
@@ -65,10 +76,16 @@ export const useMagicSearchForm = () => {
     setRarity,
     type,
     setType,
+    isOpen,
+    setIsOpen,
+    previewCard,
+    setPreviewCard,
     handleChangeSearchWord,
     handleChangeColor,
     handleChangeRarity,
     handleChangeType,
     handleSubmit,
+    handleOpenPreview,
+    handleClosePreview,
   };
 };
