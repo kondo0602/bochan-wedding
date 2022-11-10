@@ -27,7 +27,7 @@ export function MagicSearchFormPreviewDialog(props: props) {
               image={card.imageUrl}
               alt="card"
               sx={{
-                width: 300,
+                width: 280,
               }}
             />
           </Grid>
