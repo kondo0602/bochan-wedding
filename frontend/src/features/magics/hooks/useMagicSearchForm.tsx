@@ -8,6 +8,7 @@ export const useMagicSearchForm = () => {
   const [color, setColor] = useState<string>("");
   const [rarity, setRarity] = useState<string>("");
   const [type, setType] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [previewCard, setPreviewCard] = useState<Card>();
 
@@ -34,6 +35,8 @@ export const useMagicSearchForm = () => {
   };
 
   const handleSubmit = () => {
+    setIsLoading(true);
+
     const endpoint = "https://api.magicthegathering.io/v1/cards";
 
     const params: CardFilter = {
@@ -53,7 +56,8 @@ export const useMagicSearchForm = () => {
         setCards(res.data.cards);
         console.log(cards);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => setIsLoading(false));
   };
 
   const handleOpenPreview = (card: Card) => {
@@ -76,6 +80,8 @@ export const useMagicSearchForm = () => {
     setRarity,
     type,
     setType,
+    isLoading,
+    setIsLoading,
     isOpen,
     setIsOpen,
     previewCard,

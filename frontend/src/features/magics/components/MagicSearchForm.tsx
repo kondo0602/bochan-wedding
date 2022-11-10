@@ -13,6 +13,7 @@ export const MagicSearchForm = () => {
     cards,
     searchWord,
     previewCard,
+    isLoading,
     isOpen,
     handleChangeSearchWord,
     handleChangeColor,
@@ -82,27 +83,33 @@ export const MagicSearchForm = () => {
             Fetch
           </Button>
         </Stack>
-        {cards.length === 0 ? (
-          <Typography gutterBottom variant="h5" component="h2">
-            no result.
-          </Typography>
+        {isLoading ? (
+          <Typography variant="h6">Loading...</Typography>
         ) : (
-          <Stack direction="row" spacing={2}>
-            {cards.map((card) => {
-              return (
-                <div key={card.id} onClick={() => handleOpenPreview(card)}>
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      width: 150,
-                    }}
-                    image={card.imageUrl}
-                    alt="magic"
-                  />
-                </div>
-              );
-            })}
-          </Stack>
+          <>
+            {cards.length === 0 ? (
+              <Typography variant="h6" color="red">
+                no result.
+              </Typography>
+            ) : (
+              <Stack direction="row" spacing={2}>
+                {cards.map((card) => {
+                  return (
+                    <div key={card.id} onClick={() => handleOpenPreview(card)}>
+                      <CardMedia
+                        component="img"
+                        sx={{
+                          width: 150,
+                        }}
+                        image={card.imageUrl}
+                        alt="magic"
+                      />
+                    </div>
+                  );
+                })}
+              </Stack>
+            )}
+          </>
         )}
       </Stack>
       <MagicSearchFormPreviewDialog
