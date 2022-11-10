@@ -4,7 +4,6 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Counter } from "@/features/counters";
 import { MtgDatabase } from "@/features/magics";
-import MtgCard from "@/features/magics/components/MtgCard";
 import { Pokemon } from "@/features/pokemons";
 import { Todo } from "@/features/todos";
 import Footer from "components/Footer";
@@ -44,9 +43,13 @@ export default function Album() {
         </Box>
         <Container sx={{ py: 4 }} maxWidth="md">
           <Grid container spacing={4}>
-            <Pokemon />
-            <Counter />
-            <MtgCard />
+            <Grid item xs={6}>
+              <Pokemon />
+            </Grid>
+            <Grid item xs={6}>
+              <Counter />
+            </Grid>
+            {/* <MtgCard /> */}
             <Grid item xs={12} sm={12} md={12}>
               <Todo />
             </Grid>
