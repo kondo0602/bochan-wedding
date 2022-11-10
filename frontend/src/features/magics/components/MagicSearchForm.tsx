@@ -1,19 +1,14 @@
-import {
-  CardMedia,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Input,
-  Radio,
-  RadioGroup,
-  Stack,
-} from "@mui/material";
+import { CardMedia, FormControl, Input, Stack } from "@mui/material";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { useMagicSearchForm } from "../hooks/useMagicSearchForm";
 import { Card } from "../types/index";
 import CardPreviewDialog from "./CardPreviewDialog";
+import {
+  MagicSearchFormRadioGroup,
+  radioButtonGourpProps,
+} from "./MagicSearchFormRadioGroup";
 
 export const MagicSearchForm = () => {
   const {
@@ -40,6 +35,46 @@ export const MagicSearchForm = () => {
     setIsOpen(false);
   };
 
+  const choiceColorGroup: radioButtonGourpProps = {
+    radioButtons: [
+      { label: "Unspecified", value: "" },
+      { label: "White", value: "W" },
+      { label: "Blue", value: "U" },
+      { label: "Black", value: "B" },
+      { label: "Red", value: "R" },
+      { label: "Green", value: "G" },
+    ],
+    name: "Color",
+    handleChange: handleChangeColor,
+  };
+
+  const choiceTypeGroup: radioButtonGourpProps = {
+    radioButtons: [
+      { label: "Unspecified", value: "" },
+      { label: "Creature", value: "Creature" },
+      { label: "Instant", value: "Instant" },
+      { label: "Sorcery", value: "Sorcery" },
+      { label: "Enchantment", value: "Enchantment" },
+      { label: "Artifact", value: "Artifact" },
+      { label: "Planeswalker", value: "Planeswalker" },
+      { label: "Land", value: "Land" },
+    ],
+    name: "Type",
+    handleChange: handleChangeType,
+  };
+
+  const choiceRarityGroup: radioButtonGourpProps = {
+    radioButtons: [
+      { label: "Unspecified", value: "" },
+      { label: "Common", value: "Common" },
+      { label: "Uncommon", value: "Uncommon" },
+      { label: "Rare", value: "Rare" },
+      { label: "Mythic Rare", value: "Mythic Rare" },
+    ],
+    name: "Rarity",
+    handleChange: handleChangeRarity,
+  };
+
   return (
     <>
       <Stack spacing={2}>
@@ -51,106 +86,9 @@ export const MagicSearchForm = () => {
             onChange={handleChangeSearchWord}
           />
         </FormControl>
-        <FormControl>
-          <FormLabel id="demo-radio-buttons-group-label">Color</FormLabel>
-          <RadioGroup
-            row
-            aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue=""
-            name="radio-buttons-group"
-            onChange={handleChangeColor}
-          >
-            <FormControlLabel
-              value=""
-              control={<Radio />}
-              label="Unspecified"
-            />
-            <FormControlLabel value="W" control={<Radio />} label="White" />
-            <FormControlLabel value="U" control={<Radio />} label="Blue" />
-            <FormControlLabel value="B" control={<Radio />} label="Black" />
-            <FormControlLabel value="R" control={<Radio />} label="Red" />
-            <FormControlLabel value="G" control={<Radio />} label="Green" />
-          </RadioGroup>
-        </FormControl>
-        <FormControl>
-          <FormLabel id="rarity">Rarity</FormLabel>
-          <RadioGroup
-            row
-            aria-labelledby="rarity"
-            defaultValue=""
-            name="radio-buttons-group"
-            onChange={handleChangeRarity}
-          >
-            <FormControlLabel
-              value=""
-              control={<Radio />}
-              label="Unspecified"
-            />
-            <FormControlLabel
-              value="Common"
-              control={<Radio />}
-              label="Common"
-            />
-            <FormControlLabel
-              value="Uncommon"
-              control={<Radio />}
-              label="Uncommon"
-            />
-            <FormControlLabel value="Rare" control={<Radio />} label="Rare" />
-            <FormControlLabel
-              value="Mythic Rare"
-              control={<Radio />}
-              label="Mythic Rare"
-            />
-          </RadioGroup>
-        </FormControl>
-        <FormControl>
-          <FormLabel id="type">Type</FormLabel>
-          <RadioGroup
-            row
-            aria-labelledby="type"
-            defaultValue=""
-            name="type"
-            onChange={handleChangeType}
-          >
-            <FormControlLabel
-              value=""
-              control={<Radio />}
-              label="Unspecified"
-            />
-            <FormControlLabel
-              value="Creature"
-              control={<Radio />}
-              label="Creature"
-            />
-            <FormControlLabel
-              value="Instant"
-              control={<Radio />}
-              label="Instant"
-            />
-            <FormControlLabel
-              value="Sorcery"
-              control={<Radio />}
-              label="Sorcery"
-            />
-            <FormControlLabel
-              value="Artifact"
-              control={<Radio />}
-              label="Artifact"
-            />
-            <FormControlLabel
-              value="Enchantment"
-              control={<Radio />}
-              label="Enchantment"
-            />
-            <FormControlLabel
-              value="Planeswalker"
-              control={<Radio />}
-              label="Planeswalker"
-            />
-            <FormControlLabel value="Land" control={<Radio />} label="Land" />
-          </RadioGroup>
-        </FormControl>
+        <MagicSearchFormRadioGroup {...choiceColorGroup} />
+        <MagicSearchFormRadioGroup {...choiceTypeGroup} />
+        <MagicSearchFormRadioGroup {...choiceRarityGroup} />
         <Stack justifyContent="flex-end">
           <Button variant="contained" onClick={handleSubmit}>
             Fetch
