@@ -49,7 +49,6 @@ export default function Album() {
             <Grid item xs={6}>
               <Counter />
             </Grid>
-            {/* <MtgCard /> */}
             <Grid item xs={12} sm={12} md={12}>
               <Todo />
             </Grid>
