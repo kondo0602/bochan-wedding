@@ -6,8 +6,8 @@ import { Counter } from "@/features/counters";
 import { MtgDatabase } from "@/features/magics";
 import { Pokemon } from "@/features/pokemons";
 import { Todo } from "@/features/todos";
-import Footer from "components/Footer";
-import Header from "components/Header";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 export default function Album() {
   return (

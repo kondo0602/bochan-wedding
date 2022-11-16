@@ -1,5 +1,5 @@
 import { useState } from "react";
-import createRandomString from "utils/createRandomString";
+import createRandomString from "@/utils/createRandomString";
 import { todoItem } from "../types/todoItem";
 
 const initialList: todoItem[] = [
