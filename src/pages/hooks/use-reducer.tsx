@@ -1,8 +1,8 @@
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Counter } from "@/features/counters";
-import { Counter2 } from "@/features/counters/components/Counter2";
+import { CounterWithUseReducer } from "@/features/counters/components/CounterWithUseReducer";
 
 export default function UseReducerPage() {
   return (
@@ -10,12 +10,21 @@ export default function UseReducerPage() {
       <Header />
       <main>
         <Container sx={{ py: 4 }} maxWidth="md">
+          <Typography
+            component="h1"
+            variant="h2"
+            align="center"
+            color="text.primary"
+            gutterBottom
+          >
+            use-Reducer
+          </Typography>
           <Grid container spacing={4}>
             <Grid item xs={6}>
               <Counter />
             </Grid>
             <Grid item xs={6}>
-              <Counter2 />
+              <CounterWithUseReducer />
             </Grid>
           </Grid>
         </Container>

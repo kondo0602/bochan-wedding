@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useCounter = () => {
+export const useCounterWithUseState = () => {
   const [count, setCount] = useState<number>(0);
 
   const [error, setError] = useState<boolean>(false);
@@ -35,5 +35,3 @@ const useCounter = () => {
 
   return { count, error, increment, decrement, double };
 };
-
-export default useCounter;

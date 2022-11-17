@@ -5,7 +5,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import useCounter from "../hooks/useCounter";
+import { useCounterWithUseState as useCounter } from "../hooks/useCounterWithUseState";
 
 export const Counter = () => {
   const { count, error, increment, decrement, double } = useCounter();
@@ -25,7 +25,7 @@ export const Counter = () => {
         sx={{ pt: 2, pl: 2 }}
       >
         <AvTimerIcon sx={{ pt: 1, mr: 1 }} />
-        Counter
+        Counter(use-state)
       </Typography>
       <Typography
         gutterBottom
