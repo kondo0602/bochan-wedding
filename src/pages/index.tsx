@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { UseReducer } from "@/components/UseReducer";
-import { Counter } from "@/features/counters";
+import { CounterWithUseState } from "@/features/counters";
 import { MtgDatabase } from "@/features/magics";
 import { Pokemon } from "@/features/pokemons";
 import { Todo } from "@/features/todos";
@@ -48,7 +48,7 @@ export default function Album() {
               <Pokemon />
             </Grid>
             <Grid item xs={6}>
-              <Counter />
+              <CounterWithUseState />
             </Grid>
             <Grid item xs={12} sm={12} md={12}>
               <Todo />

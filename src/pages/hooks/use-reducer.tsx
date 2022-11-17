@@ -1,7 +1,7 @@
 import { Container, Grid, Typography } from "@mui/material";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { Counter } from "@/features/counters";
+import { CounterWithUseState } from "@/features/counters";
 import { CounterWithUseReducer } from "@/features/counters/components/CounterWithUseReducer";
 
 export default function UseReducerPage() {
@@ -21,7 +21,7 @@ export default function UseReducerPage() {
           </Typography>
           <Grid container spacing={4}>
             <Grid item xs={6}>
-              <Counter />
+              <CounterWithUseState />
             </Grid>
             <Grid item xs={6}>
               <CounterWithUseReducer />
