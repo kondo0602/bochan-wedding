@@ -2,6 +2,7 @@ import { Container, Grid } from "@mui/material";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Counter } from "@/features/counters";
+import { Counter2 } from "@/features/counters/components/Counter2";
 
 export default function UseReducerPage() {
   return (
@@ -14,7 +15,7 @@ export default function UseReducerPage() {
               <Counter />
             </Grid>
             <Grid item xs={6}>
-              <Counter />
+              <Counter2 />
             </Grid>
           </Grid>
         </Container>
