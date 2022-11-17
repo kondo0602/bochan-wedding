@@ -2,7 +2,7 @@ import { Container, Grid, Typography } from "@mui/material";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { CounterWithUseState } from "@/features/counters";
-import { CounterWithUseReducer } from "@/features/counters/components/CounterWithUseReducer";
+import { CounterWithUseReducer } from "@/features/counters";
 
 export default function UseReducerPage() {
   return (
