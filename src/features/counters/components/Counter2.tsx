@@ -4,12 +4,11 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import error from "next/error";
 import * as React from "react";
 import { useReducer } from "react";
 
 export const Counter2 = () => {
-  const initialState = { count: 0 };
+  const initialState = { count: 0, isError: false };
 
   type ACTIONTYPE =
     | { type: "increment" }
@@ -19,11 +18,17 @@ export const Counter2 = () => {
   const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
     switch (action.type) {
       case "increment":
-        return { count: state.count + 1 };
+        return 999 < state.count + 1
+          ? { count: state.count, isError: true }
+          : { count: state.count + 1, isError: false };
       case "decrement":
-        return { count: state.count - 1 };
+        return state.count - 1 < -99
+          ? { count: state.count, isError: true }
+          : { count: state.count - 1, isError: false };
       case "double":
-        return { count: state.count * 2 };
+        return state.count * 2 < -99 || 999 < state.count * 2
+          ? { count: state.count, isError: true }
+          : { count: state.count * 2, isError: false };
       default:
         throw new Error();
     }
@@ -58,7 +63,7 @@ export const Counter2 = () => {
         {state.count}
       </Typography>
       <CardContent sx={{ flexGrow: 1 }}>
-        {error && (
+        {state.isError && (
           <Typography color="error">
             Do not operate the number to become 4 digits as it will protrude
             from the frame.
