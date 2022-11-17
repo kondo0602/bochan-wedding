@@ -2,12 +2,13 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { UseReducer } from "@/components/UseReducer";
 import { Counter } from "@/features/counters";
 import { MtgDatabase } from "@/features/magics";
 import { Pokemon } from "@/features/pokemons";
 import { Todo } from "@/features/todos";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 
 export default function Album() {
   return (
@@ -54,6 +55,9 @@ export default function Album() {
             </Grid>
             <Grid item xs={12} sm={12} md={12}>
               <MtgDatabase />
+            </Grid>
+            <Grid item xs={12} sm={12} md={12}>
+              <UseReducer />
             </Grid>
           </Grid>
         </Container>
