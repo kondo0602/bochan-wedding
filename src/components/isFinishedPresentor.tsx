@@ -1,13 +1,12 @@
 import { Card, Typography, CardActions, Button } from "@mui/material";
-import { useState } from "react";
 
-export const IsFinishedWithUseState = () => {
-  const [isFinished, setIsFinished] = useState(false);
+type props = {
+  title: string;
+  isFinished: boolean;
+  handleFinish: () => void;
+};
 
-  const handleFinish = () => {
-    setIsFinished(true);
-  };
-
+export const IsFinishedPresentor = (props: props) => {
   return (
     <Card
       sx={{
@@ -22,7 +21,7 @@ export const IsFinishedWithUseState = () => {
         component="h2"
         sx={{ pt: 2, pl: 2 }}
       >
-        Finish(use-State)
+        {props.title}
       </Typography>
       <Typography
         gutterBottom
@@ -31,7 +30,7 @@ export const IsFinishedWithUseState = () => {
         mx="auto"
         sx={{ pt: 2 }}
       >
-        {isFinished ? "done!" : "not yet"}
+        {props.isFinished ? "done!" : "not yet"}
       </Typography>
       <CardActions
         sx={{
@@ -41,7 +40,7 @@ export const IsFinishedWithUseState = () => {
           alignItems: "center",
         }}
       >
-        <Button variant="contained" onClick={handleFinish}>
+        <Button variant="contained" onClick={props.handleFinish}>
           finish
         </Button>
       </CardActions>
