@@ -1,12 +1,21 @@
 import { Card, Typography, CardActions, Button } from "@mui/material";
-import { useState } from "react";
+import { useReducer } from "react";
 
-export const IsFinishedWithUseState = () => {
-  const [isFinished, setIsFinished] = useState(false);
+export const IsFinishedWithUseReducer = () => {
+  const initialState = { isFinished: false };
 
-  const handleFinish = () => {
-    setIsFinished(true);
+  type ACTIONTYPE = { type: "finish" };
+
+  const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
+    switch (action.type) {
+      case "finish":
+        return { isFinished: true };
+      default:
+        throw new Error();
+    }
   };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <Card
@@ -31,7 +40,7 @@ export const IsFinishedWithUseState = () => {
         mx="auto"
         sx={{ pt: 2 }}
       >
-        {isFinished ? "done!" : "not yet"}
+        {state.isFinished ? "done!" : "not yet"}
       </Typography>
       <CardActions
         sx={{
@@ -41,7 +50,10 @@ export const IsFinishedWithUseState = () => {
           alignItems: "center",
         }}
       >
-        <Button variant="contained" onClick={handleFinish}>
+        <Button
+          variant="contained"
+          onClick={() => dispatch({ type: "finish" })}
+        >
           finish
         </Button>
       </CardActions>

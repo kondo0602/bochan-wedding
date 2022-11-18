@@ -1,7 +1,8 @@
 import { Container, Grid } from "@mui/material";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { IsFinished } from "@/components/IsFinished";
+import { IsFinishedWithUseState } from "@/components/IsFinished";
+import { IsFinishedWithUseReducer } from "@/components/IsFinishedWithUseReducer";
 import { PageTitle } from "@/components/PageTitle";
 import { CounterWithUseState } from "@/features/counters";
 import { CounterWithUseReducer } from "@/features/counters";
@@ -21,10 +22,10 @@ export default function UseReducerPage() {
               <CounterWithUseReducer />
             </Grid>
             <Grid item xs={6}>
-              <IsFinished />
+              <IsFinishedWithUseState />
             </Grid>
             <Grid item xs={6}>
-              <IsFinished />
+              <IsFinishedWithUseReducer />
             </Grid>
           </Grid>
         </Container>
