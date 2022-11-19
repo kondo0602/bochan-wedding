@@ -6,6 +6,7 @@ import {
   Input,
   List,
   ListItem,
+  Stack,
 } from "@mui/material";
 import React from "react";
 import { useContactListWithUseState } from "../hooks/useContactListWithUseState";
@@ -49,14 +50,17 @@ export const ContactListWithUseState = () => {
             </ListItem>
           ))}
         </List>
-        <Input
-          value={input}
-          placeholder="Please Enter Email Address"
-          onChange={handleChangeInput}
-        />
-        <Button variant="contained" onClick={handleAdd}>
-          Add
-        </Button>
+        <Stack direction="row" spacing={4}>
+          <Input
+            fullWidth
+            value={input}
+            placeholder="Please Enter Email Address"
+            onChange={handleChangeInput}
+          />
+          <Button variant="contained" onClick={handleAdd}>
+            Add
+          </Button>
+        </Stack>
       </CardContent>
     </Card>
   );

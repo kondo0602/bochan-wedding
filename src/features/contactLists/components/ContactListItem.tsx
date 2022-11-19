@@ -1,4 +1,4 @@
-import { Typography, Button, Input } from "@mui/material";
+import { Typography, Button, Input, Stack } from "@mui/material";
 
 type props = {
   index: number;
@@ -27,21 +27,29 @@ export const ContactListItem = (props: props) => {
   return (
     <>
       {mode === "view" ? (
-        <Typography variant="body2" color="text.secondary">
-          {email}
-          <Button onClick={() => handleEditMode(index)}>edit</Button>
-          <Button onClick={() => handleDelete(index)}>delete</Button>
-        </Typography>
+        <Stack direction="row" spacing={1} alignItems="center">
+          <Typography variant="body2" color="text.secondary">
+            {email}
+          </Typography>
+          <Button variant="contained" onClick={() => handleEditMode(index)}>
+            edit
+          </Button>
+          <Button variant="contained" onClick={() => handleDelete(index)}>
+            delete
+          </Button>
+        </Stack>
       ) : (
-        <>
+        <Stack direction="row" spacing={4}>
           <Input
             value={email}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleChangeEmail(e, index)
             }
           ></Input>
-          <Button onClick={() => handleViewMode(index)}>save</Button>
-        </>
+          <Button variant="contained" onClick={() => handleViewMode(index)}>
+            save
+          </Button>
+        </Stack>
       )}
     </>
   );
