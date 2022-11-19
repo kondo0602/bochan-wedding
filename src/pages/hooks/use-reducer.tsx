@@ -1,10 +1,10 @@
 import { Container, Grid } from "@mui/material";
-import { ContactListWithUseState } from "@/components/ContactListWithUseState";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { IsFinishedWithUseReducer } from "@/components/IsFinishedWithUseReducer";
 import { IsFinishedWithUseState } from "@/components/IsFinishedWithUseState";
 import { PageTitle } from "@/components/PageTitle";
+import { ContactListWithUseState } from "@/features/contactLists";
 import { CounterWithUseState } from "@/features/counters";
 import { CounterWithUseReducer } from "@/features/counters";
 
