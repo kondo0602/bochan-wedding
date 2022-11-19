@@ -8,55 +8,76 @@ import {
   ListItem,
 } from "@mui/material";
 import React, { useState } from "react";
-import createRandomString from "@/utils/createRandomString";
 
 type ContactAddress = {
-  id: string;
   email: string;
   mode: "view" | "edit";
 };
 
 export const ContactListWithUseState = () => {
-  const [contactList, setContactList] = useState<ContactAddress[]>([
+  const initialContactAddress: ContactAddress[] = [
     {
-      id: "1",
       email: "kondo8363@gmail.com",
       mode: "edit",
     },
     {
-      id: "2",
       email: "kondo7778363@gmail.com",
       mode: "view",
     },
-  ]);
+  ];
+
+  const [contactList, setContactList] = useState<ContactAddress[]>(
+    initialContactAddress
+  );
 
   const [input, setInput] = useState<string>("");
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const input = event.target.value;
     setInput(input);
   };
+
   const handleAdd = () => {
-    setContactList([
-      ...contactList,
-      { id: createRandomString(), email: input, mode: "view" },
-    ]);
+    setContactList([...contactList, { email: input, mode: "view" }]);
     setInput("");
   };
 
-  // const handleToggleMode = (id: string) => {
-  //   const newContactList = contactList.map((contact) => {
-  //     if (contact.id === id) {
-  //       return { ...contact, mode: contact.mode === "view" ? "edit" : "view" };
-  //     }
-  //     return contact;
-  //   });
-  // TODO: ここでUNION型にstringを割り当てることができないというエラーになる
-  //   setContactList(newContactList);
-  // };
+  const handleChangeEmail = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const input = event.target.value;
+    const newContactList = contactList.map((contactAddress, mIndex) => {
+      return index === mIndex
+        ? { ...contactAddress, email: input }
+        : contactAddress;
+    });
+    setContactList(newContactList);
+  };
 
-  const handleRemove = (id: string) => {
-    setContactList(contactList.filter((contact) => contact.id !== id));
+  const handleEditMode = (index: number) => {
+    const newContactList: ContactAddress[] = contactList.map(
+      (contact, mIndex) => {
+        return index === mIndex ? { ...contact, mode: "edit" } : contact;
+      }
+    );
+    setContactList(newContactList);
+  };
+
+  const handleViewMode = (index: number) => {
+    const newContactList: ContactAddress[] = contactList.map(
+      (contact, mIndex) => {
+        return index === mIndex ? { ...contact, mode: "view" } : contact;
+      }
+    );
+
+    setContactList(newContactList);
+  };
+
+  const handleDelete = (index: number) => {
+    setContactList(contactList.filter((contact, fIndex) => index !== fIndex));
   };
 
   return (
@@ -72,12 +93,15 @@ export const ContactListWithUseState = () => {
       </Typography>
       <CardContent sx={{ flexGrow: 1 }}>
         <List>
-          {contactList.map((item) => (
-            <ListItem key={item.email}>
+          {contactList.map((item, mIndex) => (
+            <ListItem key={mIndex}>
               <ContactListItem
                 {...item}
-                input={input}
-                handleDelete={handleRemove}
+                index={mIndex}
+                handleChangeEmail={handleChangeEmail}
+                handleEditMode={handleEditMode}
+                handleViewMode={handleViewMode}
+                handleDelete={handleDelete}
               />
             </ListItem>
           ))}
@@ -96,26 +120,46 @@ export const ContactListWithUseState = () => {
 };
 
 type ContactListItemProps = {
-  id: string;
+  index: number;
   email: string;
   mode: "view" | "edit";
-  input: string;
-  handleDelete: (id: string) => void;
+  handleChangeEmail: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => void;
+  handleEditMode: (index: number) => void;
+  handleViewMode: (index: number) => void;
+  handleDelete: (index: number) => void;
 };
 
 export const ContactListItem = (props: ContactListItemProps) => {
+  const {
+    index,
+    email,
+    mode,
+    handleChangeEmail,
+    handleEditMode,
+    handleViewMode,
+    handleDelete,
+  } = props;
+
   return (
     <>
-      {props.mode === "view" ? (
+      {mode === "view" ? (
         <Typography variant="body2" color="text.secondary">
-          {props.email}
-          <Button>edit</Button>
-          <Button onClick={() => props.handleDelete(props.id)}>delete</Button>
+          {email}
+          <Button onClick={() => handleEditMode(index)}>edit</Button>
+          <Button onClick={() => handleDelete(index)}>delete</Button>
         </Typography>
       ) : (
         <>
-          <Input value={props.email}></Input>
-          <Button>save</Button>
+          <Input
+            value={email}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChangeEmail(e, index)
+            }
+          ></Input>
+          <Button onClick={() => handleViewMode(index)}>save</Button>
         </>
       )}
     </>
