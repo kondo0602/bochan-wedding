@@ -1,8 +1,8 @@
 import { useState } from "react";
-import type { ContactAddress } from "../types";
+import type { Contact } from "../types";
 
 export const useContactListWithUseState = () => {
-  const initialContactAddress: ContactAddress[] = [
+  const initialContact: Contact[] = [
     {
       email: "hogehoge@example.com",
       mode: "view",
@@ -17,9 +17,9 @@ export const useContactListWithUseState = () => {
     },
   ];
 
-  const [contactList, setContactList] = useState<ContactAddress[]>(
-    initialContactAddress
-  );
+  const [contactList, setContactList] = useState<Contact[]>(initialContact);
+
+  const canAddContact = contactList.length < 5;
 
   const [input, setInput] = useState<string>("");
 
@@ -28,29 +28,23 @@ export const useContactListWithUseState = () => {
     index: number
   ) => {
     const input = event.target.value;
-    const newContactList = contactList.map((contactAddress, mIndex) => {
-      return index === mIndex
-        ? { ...contactAddress, email: input }
-        : contactAddress;
+    const newContactList = contactList.map((contact, mIndex) => {
+      return index === mIndex ? { ...contact, email: input } : contact;
     });
     setContactList(newContactList);
   };
 
   const handleEditMode = (index: number) => {
-    const newContactList: ContactAddress[] = contactList.map(
-      (contact, mIndex) => {
-        return index === mIndex ? { ...contact, mode: "edit" } : contact;
-      }
-    );
+    const newContactList: Contact[] = contactList.map((contact, mIndex) => {
+      return index === mIndex ? { ...contact, mode: "edit" } : contact;
+    });
     setContactList(newContactList);
   };
 
   const handleViewMode = (index: number) => {
-    const newContactList: ContactAddress[] = contactList.map(
-      (contact, mIndex) => {
-        return index === mIndex ? { ...contact, mode: "view" } : contact;
-      }
-    );
+    const newContactList: Contact[] = contactList.map((contact, mIndex) => {
+      return index === mIndex ? { ...contact, mode: "view" } : contact;
+    });
 
     setContactList(newContactList);
   };
@@ -73,6 +67,7 @@ export const useContactListWithUseState = () => {
 
   return {
     contactList,
+    canAddContact,
     input,
     handleChangeEmail,
     handleEditMode,
