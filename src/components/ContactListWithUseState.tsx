@@ -1,12 +1,21 @@
-import { Card, Typography, CardContent, Button, Input } from "@mui/material";
+import {
+  Card,
+  Typography,
+  CardContent,
+  Button,
+  Input,
+  List,
+  ListItem,
+} from "@mui/material";
+import { useState } from "react";
+
+type ContactAddress = {
+  email: string;
+  mode: "view" | "edit";
+};
 
 export const ContactListWithUseState = () => {
-  type NotificationDestination = {
-    email: string;
-    mode: "view" | "edit";
-  };
-
-  const notificationDestination: NotificationDestination[] = [
+  const [contactList, setContactList] = useState<ContactAddress[]>([
     {
       email: "kondo8363@gmail.com",
       mode: "edit",
@@ -15,7 +24,7 @@ export const ContactListWithUseState = () => {
       email: "kondo7778363@gmail.com",
       mode: "view",
     },
-  ];
+  ]);
 
   return (
     <Card
@@ -25,25 +34,38 @@ export const ContactListWithUseState = () => {
         flexDirection: "column",
       }}
     >
-      <Typography
-        gutterBottom
-        variant="h5"
-        component="h2"
-        sx={{ pt: 2, pl: 2 }}
-      >
+      <Typography gutterBottom variant="h5" sx={{ pt: 2, pl: 2 }}>
         Contact List (use-state)
       </Typography>
       <CardContent sx={{ flexGrow: 1 }}>
-        {notificationDestination.map((item) => (
-          <Typography key={item.email} variant="body2" color="text.secondary">
-            {item.email}
-            <Button>edit</Button>
-            <Button>delete</Button>
-          </Typography>
-        ))}
-        <Input placeholder="Please Enter Email Adress"></Input>
-        <Button>save</Button>
+        <List>
+          {contactList.map((item) => (
+            <ListItem key={item.email}>
+              <ContactListItem {...item} />
+            </ListItem>
+          ))}
+        </List>
+        <Button variant="contained">Add</Button>
       </CardContent>
     </Card>
+  );
+};
+
+export const ContactListItem = (props: ContactAddress) => {
+  return (
+    <>
+      {props.mode === "view" ? (
+        <Typography variant="body2" color="text.secondary">
+          {props.email}
+          <Button>edit</Button>
+          <Button>delete</Button>
+        </Typography>
+      ) : (
+        <>
+          <Input placeholder="Please Enter Email Adress"></Input>
+          <Button>save</Button>
+        </>
+      )}
+    </>
   );
 };
