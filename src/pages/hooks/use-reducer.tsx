@@ -1,4 +1,5 @@
 import { Container, Grid } from "@mui/material";
+import { ContactListWithUseState } from "@/components/ContactListWithUseState";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { IsFinishedWithUseReducer } from "@/components/IsFinishedWithUseReducer";
@@ -26,6 +27,9 @@ export default function UseReducerPage() {
             </Grid>
             <Grid item xs={6}>
               <IsFinishedWithUseReducer />
+            </Grid>
+            <Grid item xs={12}>
+              <ContactListWithUseState />
             </Grid>
           </Grid>
         </Container>
