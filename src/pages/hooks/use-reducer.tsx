@@ -5,6 +5,7 @@ import { IsFinishedWithUseReducer } from "@/components/IsFinishedWithUseReducer"
 import { IsFinishedWithUseState } from "@/components/IsFinishedWithUseState";
 import { PageTitle } from "@/components/PageTitle";
 import { ContactListWithUseState } from "@/features/contactLists";
+import { ContactListWithUseReducer } from "@/features/contactLists/components/ContactListWithUseReducer";
 import { CounterWithUseState } from "@/features/counters";
 import { CounterWithUseReducer } from "@/features/counters";
 
@@ -30,6 +31,9 @@ export default function UseReducerPage() {
             </Grid>
             <Grid item xs={12}>
               <ContactListWithUseState />
+            </Grid>
+            <Grid item xs={12}>
+              <ContactListWithUseReducer />
             </Grid>
           </Grid>
         </Container>
