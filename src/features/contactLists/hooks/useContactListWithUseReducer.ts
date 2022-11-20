@@ -2,6 +2,7 @@ import { useReducer } from "react";
 import type { ContactList } from "../types";
 
 export const useContactListWithUseReducer = () => {
+  // TODO: 練習のためにまとめたけど、contactListとnewContactの状態は別で持った方が良さそう？
   const initialContactList: ContactList = {
     contactList: [
       {
