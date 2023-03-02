@@ -8,8 +8,6 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "Silkscreen",
-    // TODO: なぜかこのフォントだけ適用されない...
-    // fontFamily: "Press Start 2P",
   },
 });
 
