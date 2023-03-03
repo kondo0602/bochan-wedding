@@ -7,7 +7,7 @@ const theme = createTheme({
     // mode: "dark",
   },
   typography: {
-    fontFamily: "Silkscreen",
+    // fontFamily: "Silkscreen",
   },
 });
 
