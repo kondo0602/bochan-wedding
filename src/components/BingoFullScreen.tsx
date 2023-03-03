@@ -1,40 +1,11 @@
+import { useBingo } from "@/hooks/useBingo";
 import { Box, Typography, Grid } from "@mui/material";
-import { useState } from "react";
 import { HalfScreen } from "./HalfScreen";
 import { Counter } from "./HitButton";
 
 export const BingoFullScreen = () => {
-  type Number = {
-    number: number;
-    isHit: boolean;
-  };
-
-  const getInitialNumbers = (): Number[] => {
-    const numbers: Number[] = [];
-    for (let i = 0; i < 75; i++) {
-      numbers.push({ number: i + 1, isHit: false });
-    }
-    return numbers;
-  };
-
-  // TODO: useReducerで書き換える
-  const [numbers, setNumbers] = useState<Number[]>(getInitialNumbers());
-  const [pickedNumber, setPickedNumber] = useState<number>(0);
-  const [isRunning, setIsRunning] = useState<boolean>(false);
-
-  const handleStart = () => {
-    setIsRunning(true);
-  };
-
-  const handleStop = (): void => {
-    const unhitNumbers = numbers.filter((number) => !number.isHit);
-    const pickedNumber =
-      unhitNumbers[Math.floor(Math.random() * unhitNumbers.length)];
-    pickedNumber.isHit = true;
-    setNumbers([...numbers]);
-    setPickedNumber(pickedNumber.number);
-    setIsRunning(false);
-  };
+  const { numbers, pickedNumber, isRunning, handleStart, handleStop } =
+    useBingo();
 
   return (
     <Box
