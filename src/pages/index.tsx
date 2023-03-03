@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 const Bingo = () => {
+  // TODO: ビンゴに関するロジックは別のコンポーネントに切り出す
   const handle = useFullScreenHandle();
 
   type Number = {
@@ -19,8 +20,10 @@ const Bingo = () => {
     return numbers;
   };
 
+  // TODO: useReducerで書き換える
   const [numbers, setNumbers] = useState<Number[]>(getInitialNumbers());
   const [pickedNumber, setPickedNumber] = useState<number>(0);
+  const [running, setRunning] = useState<boolean>(false);
 
   const pickUnhitNumber = (): void => {
     const unhitNumbers = numbers.filter((number) => !number.isHit);
@@ -29,6 +32,7 @@ const Bingo = () => {
     pickedNumber.isHit = true;
     setNumbers([...numbers]);
     setPickedNumber(pickedNumber.number);
+    setRunning(false);
   };
 
   return (
@@ -50,9 +54,15 @@ const Bingo = () => {
                 <Typography variant="h1">
                   {pickedNumber !== 0 ? pickedNumber : "?"}
                 </Typography>
-                <Button variant="contained" onClick={pickUnhitNumber}>
-                  start
-                </Button>
+                {running ? (
+                  <Button variant="contained" onClick={pickUnhitNumber}>
+                    STOP!
+                  </Button>
+                ) : (
+                  <Button variant="contained" onClick={() => setRunning(true)}>
+                    START!
+                  </Button>
+                )}
               </Stack>
             </HalfScreen>
             <HalfScreen>
