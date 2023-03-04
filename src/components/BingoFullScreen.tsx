@@ -3,8 +3,14 @@ import { Box, Typography, Grid, Stack } from "@mui/material";
 import { Counter } from "./HitButton";
 
 export const BingoFullScreen = () => {
-  const { numbers, pickedNumber, isRunning, handleStart, handleStop } =
-    useBingo();
+  const {
+    numbers,
+    pickedNumber,
+    isRunning,
+    handleStart,
+    handleStop,
+    isFinished,
+  } = useBingo();
 
   return (
     <Box
@@ -30,6 +36,7 @@ export const BingoFullScreen = () => {
           handleStart={handleStart}
           handleStop={handleStop}
           pickedNumber={pickedNumber}
+          isFinished={isFinished}
         />
       </Box>
       <Box

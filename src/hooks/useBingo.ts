@@ -50,11 +50,14 @@ export const useBingo = () => {
     playSymbal();
   };
 
+  const isFinished = numbers.every((number) => number.isHit);
+
   return {
     numbers,
     pickedNumber,
     isRunning,
     handleStart,
     handleStop,
+    isFinished,
   };
 };

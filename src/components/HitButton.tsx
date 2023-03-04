@@ -6,6 +6,7 @@ type Props = {
   handleStart: () => void;
   handleStop: () => void;
   pickedNumber: number;
+  isFinished: boolean;
 };
 
 export const Counter = ({
@@ -13,6 +14,7 @@ export const Counter = ({
   handleStart,
   handleStop,
   pickedNumber,
+  isFinished,
 }: Props) => {
   return (
     <Stack
@@ -43,6 +45,7 @@ export const Counter = ({
             variant="contained"
             onClick={handleStart}
             sx={{ width: 150, height: 50 }}
+            disabled={isFinished}
           >
             START!
           </Button>
