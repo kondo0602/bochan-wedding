@@ -60,15 +60,17 @@ export const BingoFullScreen = () => {
                     height: 45,
                     justifyContent: "center",
                     alignItems: "center",
-                    textAlign: "center",
                     border: 4,
                     borderRadius: "50%",
                     borderColor: number.isHit ? number.color : "lightGray",
+                    pb: 0.5,
                   }}
                 >
                   <Typography
                     color={number.isHit ? "black" : "lightGray"}
-                    sx={{ textAlign: "center" }}
+                    sx={{
+                      fontSize: 16,
+                    }}
                   >
                     {number.number}
                   </Typography>
