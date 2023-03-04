@@ -3,13 +3,13 @@ import { getRandomNumber } from "@/utils/getRandomNumber";
 import { Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 
-const useAnimationFrame = (callback) => {
+const useAnimationFrame = (callback: any) => {
   // Use useRef for mutable variables that we want to persist
   // without triggering a re-render on their change
   const requestRef = useRef<number>();
   const previousTimeRef = useRef<number>();
 
-  const animate = (time) => {
+  const animate = (time: any) => {
     if (previousTimeRef.current != undefined) {
       const deltaTime = time - previousTimeRef.current;
       callback(deltaTime);
