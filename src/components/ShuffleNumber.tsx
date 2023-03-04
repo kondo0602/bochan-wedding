@@ -33,5 +33,9 @@ export const ShuffleNumber = () => {
     setCount(getRandomNumber(1, 75));
   });
 
-  return <Typography variant="h1">{count}</Typography>;
+  return (
+    <Typography variant="h1" color="white">
+      {count}
+    </Typography>
+  );
 };

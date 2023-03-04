@@ -16,14 +16,23 @@ export const BingoFullScreen = () => {
         background: "white",
       }}
     >
-      <HalfScreen>
+      <Box
+        sx={{
+          display: "flex",
+          flex: 1,
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundImage: `url(${"/images/back.jpeg"})`,
+        }}
+      >
         <Counter
           isRunning={isRunning}
           handleStart={handleStart}
           handleStop={handleStop}
           pickedNumber={pickedNumber}
         />
-      </HalfScreen>
+      </Box>
       <HalfScreen>
         <Stack spacing={2}>
           <Typography>これまでに出た数字は...</Typography>
@@ -34,6 +43,7 @@ export const BingoFullScreen = () => {
                 item
                 xs={1}
                 sx={{ display: "flex", justifyContent: "center" }}
+                key={number.number.toString()}
               >
                 <Typography color={number.isHit ? "black" : "lightGray"}>
                   {number.number}

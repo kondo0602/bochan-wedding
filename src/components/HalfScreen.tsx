@@ -1,6 +1,11 @@
 import { Box } from "@mui/material";
+import { ReactNode } from "react";
 
-export const HalfScreen = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+export const HalfScreen = ({ children }: Props) => {
   return (
     <Box
       sx={{

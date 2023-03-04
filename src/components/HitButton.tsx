@@ -25,7 +25,7 @@ export const Counter = ({
         </>
       ) : (
         <>
-          <Typography variant="h1">
+          <Typography variant="h1" color="white">
             {pickedNumber !== 0 ? pickedNumber : "?"}
           </Typography>
           <Button variant="contained" onClick={handleStart}>
