@@ -15,11 +15,11 @@ export const Counter = ({
   pickedNumber,
 }: Props) => {
   return (
-    <Stack spacing={4}>
+    <Stack spacing={4} sx={{ width: 160, textAlign: "center" }}>
       {isRunning ? (
         <>
           <ShuffleNumber />
-          <Button variant="contained" onClick={handleStop}>
+          <Button variant="contained" onClick={handleStop} sx={{ height: 50 }}>
             STOP!
           </Button>
         </>
@@ -28,7 +28,7 @@ export const Counter = ({
           <Typography variant="h1" color="white">
             {pickedNumber !== 0 ? pickedNumber : "?"}
           </Typography>
-          <Button variant="contained" onClick={handleStart}>
+          <Button variant="contained" onClick={handleStart} sx={{ height: 50 }}>
             START!
           </Button>
         </>

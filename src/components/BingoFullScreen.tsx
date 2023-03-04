@@ -33,7 +33,16 @@ export const BingoFullScreen = () => {
           pickedNumber={pickedNumber}
         />
       </Box>
-      <HalfScreen>
+      <Box
+        sx={{
+          display: "flex",
+          flex: 1,
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: 2,
+        }}
+      >
         <Stack spacing={2}>
           <Typography>これまでに出た数字は...</Typography>
           <Grid container columns={5} rowSpacing={1}>
@@ -52,7 +61,7 @@ export const BingoFullScreen = () => {
             ))}
           </Grid>
         </Stack>
-      </HalfScreen>
+      </Box>
     </Box>
   );
 };
