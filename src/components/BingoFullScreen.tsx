@@ -22,7 +22,7 @@ export const BingoFullScreen = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          backgroundImage: `url(${"/images/back.jpeg"})`,
+          backgroundImage: `url(${"/images/IMG_04962.jpg"})`,
         }}
       >
         <Counter
@@ -43,8 +43,8 @@ export const BingoFullScreen = () => {
         }}
       >
         <Stack spacing={2}>
-          <Typography>これまでに出た数字は...</Typography>
-          <Grid container columns={5} rowSpacing={1}>
+          <Typography variant="h4">これまでに出た数字は...</Typography>
+          <Grid container columns={5} rowSpacing={1} sx={{ px: 6 }}>
             {numbers.map((number) => (
               <Grid
                 component="div"
