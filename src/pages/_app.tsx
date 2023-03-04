@@ -4,10 +4,12 @@ import type { AppProps } from "next/app";
 
 const theme = createTheme({
   palette: {
-    // mode: "dark",
+    primary: {
+      main: "#f5a700",
+    },
   },
   typography: {
-    fontFamily: "killGothic",
+    fontFamily: "DelaGothic",
   },
 });
 
