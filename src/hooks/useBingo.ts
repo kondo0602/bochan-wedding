@@ -1,11 +1,21 @@
-import { BingoNumber } from "@/types/BingoNumber";
+import { BingoNumber, ColorCode } from "@/types/BingoNumber";
 import { useState } from "react";
+
+const getRandomColor = (): ColorCode => {
+  const colors = ["#ffa724", "#fe6d5d", "#a4f9b8", "#a4f9b8", "#3c83be"];
+
+  return colors[Math.floor(Math.random() * colors.length)] as ColorCode;
+};
 
 const getInitialNumbers = (): BingoNumber[] => {
   const numbers: BingoNumber[] = [];
   for (let n = 0; n < 15; n++) {
     for (let m = 0; m < 5; m++) {
-      numbers.push({ number: n + m * 15 + 1, isHit: false });
+      numbers.push({
+        number: n + m * 15 + 1,
+        isHit: false,
+        color: getRandomColor(),
+      });
     }
   }
 
