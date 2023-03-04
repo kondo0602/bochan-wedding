@@ -15,20 +15,35 @@ export const Counter = ({
   pickedNumber,
 }: Props) => {
   return (
-    <Stack spacing={4} sx={{ width: 160, textAlign: "center" }}>
+    <Stack
+      spacing={4}
+      sx={{
+        width: 400,
+        alignItems: "center",
+        textAlign: "center",
+      }}
+    >
       {isRunning ? (
         <>
           <ShuffleNumber />
-          <Button variant="contained" onClick={handleStop} sx={{ height: 50 }}>
+          <Button
+            variant="contained"
+            onClick={handleStop}
+            sx={{ width: 150, height: 50 }}
+          >
             STOP!
           </Button>
         </>
       ) : (
         <>
-          <Typography variant="h1" color="white">
+          <Typography color="white" sx={{ fontSize: 200 }}>
             {pickedNumber !== 0 ? pickedNumber : "?"}
           </Typography>
-          <Button variant="contained" onClick={handleStart} sx={{ height: 50 }}>
+          <Button
+            variant="contained"
+            onClick={handleStart}
+            sx={{ width: 150, height: 50 }}
+          >
             START!
           </Button>
         </>

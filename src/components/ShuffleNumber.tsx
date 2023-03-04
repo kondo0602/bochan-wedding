@@ -34,7 +34,7 @@ export const ShuffleNumber = () => {
   });
 
   return (
-    <Typography variant="h1" color="white">
+    <Typography color="white" sx={{ fontSize: 200 }}>
       {count}
     </Typography>
   );
