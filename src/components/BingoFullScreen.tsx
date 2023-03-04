@@ -1,5 +1,5 @@
 import { useBingo } from "@/hooks/useBingo";
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography, Grid, Stack } from "@mui/material";
 import { HalfScreen } from "./HalfScreen";
 import { Counter } from "./HitButton";
 
@@ -25,22 +25,24 @@ export const BingoFullScreen = () => {
         />
       </HalfScreen>
       <HalfScreen>
-        <Typography>これまでに出た数字は...</Typography>
-        {/* TODO: 15ごとに縦に並んだ方が見やすい */}
-        <Grid container columns={5} spacing={1}>
-          {numbers.map((number) => (
-            <Grid
-              component="div"
-              item
-              xs={1}
-              sx={{ display: "flex", justifyContent: "center" }}
-            >
-              <Typography color={number.isHit ? "black" : "lightGray"}>
-                {number.number}
-              </Typography>
-            </Grid>
-          ))}
-        </Grid>
+        <Stack spacing={2}>
+          <Typography>これまでに出た数字は...</Typography>
+          {/* TODO: 15ごとに縦に並んだ方が見やすい */}
+          <Grid container columns={5} rowSpacing={1}>
+            {numbers.map((number) => (
+              <Grid
+                component="div"
+                item
+                xs={1}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <Typography color={number.isHit ? "black" : "lightGray"}>
+                  {number.number}
+                </Typography>
+              </Grid>
+            ))}
+          </Grid>
+        </Stack>
       </HalfScreen>
     </Box>
   );
