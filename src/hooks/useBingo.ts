@@ -1,5 +1,7 @@
 import { BingoNumber, ColorCode } from "@/types/BingoNumber";
 import { useState } from "react";
+import { useDrumrollSound } from "./useDrumrollSound";
+import { useSymbalSound } from "./useSymabalSound";
 
 const getRandomColor = (): ColorCode => {
   const colors = ["#ffa724", "#fe6d5d", "#a4f9b8", "#a4f9b8", "#3c83be"];
@@ -28,8 +30,12 @@ export const useBingo = () => {
   const [pickedNumber, setPickedNumber] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
 
+  const { playDrumroll, stopDrumroll } = useDrumrollSound();
+  const playSymbal = useSymbalSound();
+
   const handleStart = () => {
     setIsRunning(true);
+    playDrumroll();
   };
 
   const handleStop = (): void => {
@@ -40,6 +46,8 @@ export const useBingo = () => {
     setNumbers([...numbers]);
     setPickedNumber(pickedNumber.number);
     setIsRunning(false);
+    stopDrumroll();
+    playSymbal();
   };
 
   return {
