@@ -2,6 +2,8 @@ import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import type { AppProps } from "next/app";
 
+import "@/styles/fonts.css";
+
 const theme = createTheme({
   palette: {
     primary: {
