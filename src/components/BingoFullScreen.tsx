@@ -27,7 +27,6 @@ export const BingoFullScreen = () => {
       <HalfScreen>
         <Stack spacing={2}>
           <Typography>これまでに出た数字は...</Typography>
-          {/* TODO: 15ごとに縦に並んだ方が見やすい */}
           <Grid container columns={5} rowSpacing={1}>
             {numbers.map((number) => (
               <Grid

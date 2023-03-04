@@ -3,9 +3,12 @@ import { useState } from "react";
 
 const getInitialNumbers = (): BingoNumber[] => {
   const numbers: BingoNumber[] = [];
-  for (let i = 0; i < 75; i++) {
-    numbers.push({ number: i + 1, isHit: false });
+  for (let n = 0; n < 15; n++) {
+    for (let m = 0; m < 5; m++) {
+      numbers.push({ number: n + m * 15 + 1, isHit: false });
+    }
   }
+
   return numbers;
 };
 
