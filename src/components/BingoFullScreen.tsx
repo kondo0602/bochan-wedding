@@ -29,6 +29,7 @@ export const BingoFullScreen = () => {
           justifyContent: "center",
           alignItems: "center",
           backgroundImage: `url(${"/images/IMG_04962.jpg"})`,
+          backgroundSize: "cover",
         }}
       >
         <Counter
