@@ -1,6 +1,5 @@
 import { useBingo } from "@/hooks/useBingo";
 import { Box, Typography, Grid, Stack } from "@mui/material";
-import { HalfScreen } from "./HalfScreen";
 import { Counter } from "./HitButton";
 
 export const BingoFullScreen = () => {
@@ -54,9 +53,26 @@ export const BingoFullScreen = () => {
                 sx={{ display: "flex", justifyContent: "center" }}
                 key={number.number.toString()}
               >
-                <Typography color={number.isHit ? "black" : "lightGray"}>
-                  {number.number}
-                </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    width: 45,
+                    height: 45,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                    border: 4,
+                    borderRadius: "50%",
+                    borderColor: number.isHit ? number.color : "lightGray",
+                  }}
+                >
+                  <Typography
+                    color={number.isHit ? "black" : "lightGray"}
+                    sx={{ textAlign: "center" }}
+                  >
+                    {number.number}
+                  </Typography>
+                </Box>
               </Grid>
             ))}
           </Grid>
