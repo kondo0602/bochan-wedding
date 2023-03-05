@@ -1,13 +1,8 @@
-import { BingoNumber, ColorCode } from "@/types/BingoNumber";
+import { BingoNumber } from "@/types/BingoNumber";
 import { useState } from "react";
+import { getRandomColor } from "../consts/colorCodes";
 import { useDrumrollSound } from "./useDrumrollSound";
 import { useSymbalSound } from "./useSymabalSound";
-
-const getRandomColor = (): ColorCode => {
-  const colors = ["#ffa724", "#fe6d5d", "#a4f9b8", "#a4f9b8", "#3c83be"];
-
-  return colors[Math.floor(Math.random() * colors.length)] as ColorCode;
-};
 
 const getInitialNumbers = (): BingoNumber[] => {
   const numbers: BingoNumber[] = [];
