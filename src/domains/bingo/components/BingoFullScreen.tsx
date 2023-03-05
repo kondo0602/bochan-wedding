@@ -1,4 +1,4 @@
-import { useBingo } from "@/hooks/useBingo";
+import { useBingo } from "@/domains/bingo/hooks/useBingo";
 import { Box, Typography, Grid, Stack } from "@mui/material";
 import { BingoLeftScreen } from "./BingoLeftScreen";
 import { BingoRightScreen } from "./BingoRightScreen";
