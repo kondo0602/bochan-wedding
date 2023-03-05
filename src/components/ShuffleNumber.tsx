@@ -1,7 +1,7 @@
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
 import { getRandomNumber } from "@/utils/getRandomNumber";
-import { Typography } from "@mui/material";
 import { useState } from "react";
+import { LargeWhiteNumber } from "./LargeWhiteNumber";
 
 export const ShuffleNumber = () => {
   const [count, setCount] = useState<number>(0);
@@ -10,9 +10,5 @@ export const ShuffleNumber = () => {
     setCount(getRandomNumber(1, 75));
   });
 
-  return (
-    <Typography color="white" sx={{ fontSize: 200 }}>
-      {count}
-    </Typography>
-  );
+  return <LargeWhiteNumber number={count} />;
 };

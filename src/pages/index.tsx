@@ -1,4 +1,4 @@
-import { BingoFullScreen } from "@/components/BingoFullScreen";
+import { BingoFullScreen } from "@/domains/bingo/BingoFullScreen";
 import { Box, Button } from "@mui/material";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
