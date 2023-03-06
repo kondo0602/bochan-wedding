@@ -1,18 +1,26 @@
 import { useBingo } from "@/domains/bingo/hooks/useBingo";
+import { BingoNumber } from "@/types/BingoNumber";
 import { Box, Typography, Grid, Stack } from "@mui/material";
 import { BingoLeftScreen } from "./BingoLeftScreen";
 import { BingoRightScreen } from "./BingoRightScreen";
 
-export const BingoFullScreen = () => {
-  const {
-    numbers,
-    pickedNumber,
-    isRunning,
-    isFinished,
-    handleStart,
-    handleStop,
-  } = useBingo();
+type Props = {
+  numbers: BingoNumber[];
+  pickedNumber: number;
+  isRunning: boolean;
+  isFinished: boolean;
+  handleStart: () => void;
+  handleStop: () => void;
+};
 
+export const BingoFullScreen = ({
+  numbers,
+  pickedNumber,
+  isRunning,
+  isFinished,
+  handleStart,
+  handleStop,
+}: Props) => {
   return (
     <Box
       sx={{
