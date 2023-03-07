@@ -1,6 +1,6 @@
 import { BingoNumber } from "@/types/BingoNumber";
 import { Box, Stack, Typography, Grid } from "@mui/material";
-import { BingoHitNumber } from "./BingoNumber";
+import { BingoHitNumber } from "./BingoHitNumber";
 
 type Props = {
   numbers: BingoNumber[];
